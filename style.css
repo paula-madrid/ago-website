@@ -47,6 +47,8 @@ p{margin:0}
 h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
 .tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
+.meta a{border-bottom:1px solid transparent}
+.meta a:hover{color:var(--ink);border-bottom-color:currentColor}
 .meta{color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
 
 

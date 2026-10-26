@@ -19,19 +19,19 @@ PROJECTS = [
          year="2024", credit=("Context", "Self-initiated"), images=5, videos=[1]),
     dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
          text="Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.",
-         year="2024", credit=("Context", "At BIG, for 3daysofdesign"), images=5),
+         year="2024", credit=("Studio", "BIG"), press=("Dezeen", "https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/"), images=5),
     dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design"],
          text="Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.",
-         year="2020", credit=("Context", "At BIG"), images=6),
+         year="2020", credit=("Studio", "BIG"), images=6),
     dict(slug="architects-guide", title="The Architect’s Guide to the Galaxy", tags=["Editorial Design", "3D Illustration"],
          text="Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.",
-         year="2018", credit=("Context", "At BIG"), images=12),
+         year="2018", credit=("Studio", "BIG"), images=12),
     dict(slug="bhq-signage", title="BHQ Signage & Wayfinding", tags=["Signage & Wayfinding", "Icon Design"],
          text="An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. Every icon is drawn on the same construction grid and line weight, so new ones can be added in the same language.",
          year="2022", credit=("Context", "Self-initiated, at BIG"), images=6, videos=[1]),
     dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
          text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
-         year="2019", credit=("Context", "At BIG"), images=6),
+         year="2019", credit=("Studio", "BIG"), press=("designboom", "https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/"), images=6),
 ]
 
 INFO = [
@@ -42,6 +42,13 @@ EMAIL = "hi@appliedgraphicsoffice.com"
 INSTAGRAM = "appliedgraphicsoffice"
 
 e = html.escape
+
+
+def press(p):
+    if not p.get("press"):
+        return ""
+    name, url = p["press"]
+    return f'<br>Press: <a href="{e(url)}" target="_blank" rel="noopener">{e(name)}</a>'
 
 
 def project(p, i=0):
@@ -62,7 +69,7 @@ def project(p, i=0):
     </div>
     <div class="body">
       <p>{e(p["text"])}</p>
-      <p class="meta">Year: {e(p["year"])}<br>{e(p["credit"][0])}: {e(p["credit"][1])}</p>
+      <p class="meta">Year: {e(p["year"])}<br>{e(p["credit"][0])}: {e(p["credit"][1])}{press(p)}</p>
     </div>
     <div class="slides" data-count="{p["images"]}">
       <button class="frame" type="button" aria-label="Enlarge {e(p["title"])}">{slides}</button>
