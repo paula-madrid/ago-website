@@ -64,6 +64,12 @@ p{margin:0}
 h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
 .tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
+.meta a,.info a:not(.mark){white-space:nowrap}
+/* ↗ after links that leave the site. Drawn as an icon because Inclusive Sans has no arrow glyph,
+   and a fallback font would differ between systems */
+a[target="_blank"]::after{content:"";display:inline-block;width:.7em;height:.7em;margin-left:.2em;vertical-align:0;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 13 13 3M5 3h8v8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 13 13 3M5 3h8v8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
 .meta a{color:var(--link);border-bottom:1px solid transparent}
 .meta a:hover{color:var(--link);border-bottom-color:currentColor}
 .meta{color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
