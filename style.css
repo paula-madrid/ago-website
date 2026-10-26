@@ -1,6 +1,6 @@
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec; --link:#3266cf;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -47,8 +47,8 @@ p{margin:0}
 h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
 .tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
-.meta a{border-bottom:1px solid transparent}
-.meta a:hover{color:var(--ink);border-bottom-color:currentColor}
+.meta a{color:var(--link);border-bottom:1px solid transparent}
+.meta a:hover{color:var(--link);border-bottom-color:currentColor}
 .meta{color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
 
 
@@ -77,8 +77,8 @@ h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-t
 .info{max-width:calc(50vw - var(--m) - var(--g)/2);min-width:0;color:var(--text);line-height:var(--lh);display:flex;flex-direction:column;gap:1.3em}
 .info .mark{color:var(--ink)}
 .info .contact{margin-top:1.3em}
-.info a:not(.mark){border-bottom:1px solid transparent}
-.info a:not(.mark):hover{border-bottom-color:currentColor}
+.info a:not(.mark){color:var(--link);border-bottom:1px solid transparent}
+.info a:not(.mark):hover{color:var(--link);border-bottom-color:currentColor}
 
 /* footer */
 .foot{font-size:var(--s-small);color:var(--meta);padding:1.4vw max(var(--m), env(safe-area-inset-right,0px)) max(1.4vw, env(safe-area-inset-bottom,0px)) max(var(--m), env(safe-area-inset-left,0px))}
