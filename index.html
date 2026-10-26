@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Applied Graphics Office</title>
+<meta name="description" content="Applied Graphics Office is a Copenhagen design studio working at the intersection of architecture and graphic design: signage and wayfinding, visual identity and editorial design.">
+<meta property="og:title" content="Applied Graphics Office">
+<meta property="og:description" content="Signage and wayfinding, visual identity and editorial design for architecture studios and spatial practices.">
+<meta property="og:image" content="https://www.appliedgraphicsoffice.com/img/mitgera-11-1.jpg">
+<link rel="preload" href="fonts/inclusive-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+/* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
+:root{
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7;
+  --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
+  --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
+  --m:2.8vw;            /* outer margin */
+  --g:1.6vw;            /* gutter */
+  --s-body:clamp(13px, .86vw, 17px);
+  --s-large:clamp(16px, 1.16vw, 24px);
+  --s-small:clamp(10.5px, .68vw, 13px);
+  --lh:1.32;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;letter-spacing:-.01em;background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--s-body);line-height:var(--lh);
+  min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+body>div:not(.lightbox){flex:1}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--ink)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+button{font:inherit;letter-spacing:0;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+svg{display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+p{margin:0}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--s-large);color:var(--ink);
+  padding:2.2vw max(var(--m), env(safe-area-inset-right,0px)) 0 max(var(--m), env(safe-area-inset-left,0px));min-height:9.5vw}
+.top .mark{color:var(--ink)}
+.info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
+
+/* work grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}
+/* two independent columns: opening text in one never moves the other */
+.col{min-width:0;display:flex;flex-direction:column}
+.col-right{box-shadow:inset 1px 0 0 var(--rule)} /* drawn, not a border, so both columns stay equal width */
+.project{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);row-gap:0;
+  align-content:start;grid-template-rows:minmax(var(--row-h,auto),auto) auto;padding:1.15vw calc(var(--g)/2) 1.15vw max(var(--m), env(safe-area-inset-left,0px));border-bottom:1px solid var(--rule)}
+.col-right .project{padding-left:calc(var(--g)/2);padding-right:max(var(--m), env(safe-area-inset-right,0px))}
+.head{grid-column:1/3;align-self:start;min-width:0;padding-bottom:1.15vw}
+.body{grid-column:3/5;align-self:stretch;min-width:0;padding-bottom:1.15vw;display:flex;flex-direction:column;gap:1.6em}
+.slides{grid-column:1/5}
+h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
+.tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+.tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
+.meta{color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
+
+
+/* slideshow */
+.slides{position:relative;aspect-ratio:1.6;max-width:100%;background:#e9e9e6;overflow:hidden;color:var(--on-img)}
+.frame{position:absolute;inset:0;cursor:zoom-in}
+.frame img,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+.slides{--inset:1.1vw;--ico:clamp(14px,1vw,18px)}
+/* arrows and enlarge icon share one size, stroke and shadow, and the same inset from the image edge */
+.slides .prev,.slides .next{position:absolute;top:0;bottom:0;width:12%;display:flex;align-items:center}
+.slides .prev{left:0;justify-content:flex-start;padding-left:var(--inset)}.slides .next{right:0;justify-content:flex-end;padding-right:var(--inset)}
+.slides .prev svg,.slides .next svg,.enlarge svg{width:var(--ico);height:var(--ico);
+  filter:drop-shadow(0 0 3px rgba(0,0,0,.45)) drop-shadow(0 0 10px rgba(0,0,0,.25))}
+.enlarge{position:absolute;top:var(--inset);right:var(--inset);width:var(--ico);aspect-ratio:1;z-index:2;cursor:zoom-in;
+  transition:opacity .2s}
+.enlarge::after{content:"";position:absolute;inset:-12px} /* larger click target, sits above the next arrow */
+.slides[data-count="1"] .prev,.slides[data-count="1"] .next{display:none}
+/* mouse and trackpad: arrows appear on hover; touch screens keep them visible */
+@media (hover:hover) and (pointer:fine){
+  .slides .prev,.slides .next,.slides .enlarge{opacity:0;transition:opacity .2s}
+  .slides:hover .prev,.slides:hover .next,.slides:hover .enlarge,.slides:focus-within .enlarge,
+  .slides .prev:focus-visible,.slides .next:focus-visible{opacity:1}
+}
+
+/* information */
+.info{max-width:calc(50vw - var(--m) - var(--g)/2);min-width:0;color:var(--text);line-height:var(--lh);display:flex;flex-direction:column;gap:1.3em}
+.info .mark{color:var(--ink)}
+.info .contact{margin-top:1.3em}
+.info a:not(.mark){border-bottom:1px solid transparent}
+.info a:not(.mark):hover{border-bottom-color:currentColor}
+
+/* footer */
+.foot{font-size:var(--s-small);color:var(--meta);padding:1.4vw max(var(--m), env(safe-area-inset-right,0px)) max(1.4vw, env(safe-area-inset-bottom,0px)) max(var(--m), env(safe-area-inset-left,0px))}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+/* the stage hugs the image, so the arrows sit just outside its edges */
+.lightbox{--lb-ico:clamp(16px,1.2vw,22px);--lb-gap:1.2vw}
+.lb-stage{position:relative}
+.lb-img{max-width:calc(100vw - 16vw);max-height:calc(100vh - 12vh);object-fit:contain;display:block}
+.lightbox .prev,.lightbox .next{position:absolute;top:0;bottom:0;width:calc(var(--lb-ico) + var(--lb-gap) + 2vw);display:flex;align-items:center}
+.lightbox .prev{right:100%;justify-content:flex-end;padding-right:var(--lb-gap)}
+.lightbox .next{left:100%;justify-content:flex-start;padding-left:var(--lb-gap)}
+.lightbox svg{width:var(--lb-ico);height:var(--lb-ico)}
+.lb-close{position:absolute;z-index:2;padding:8px;margin:-8px;top:calc(2.2vw + env(safe-area-inset-top,0px));right:max(var(--m), env(safe-area-inset-right,0px))}
+.lb-caption{position:absolute;left:max(var(--m), env(safe-area-inset-left,0px));bottom:calc(1.4vw + env(safe-area-inset-bottom,0px));font-size:var(--s-body);color:var(--meta)}
+.lb-caption b{font-weight:400;color:var(--ink);text-transform:uppercase;letter-spacing:inherit}
+body.locked{overflow:hidden}
+
+/* phones and small tablets: one project per row */
+@media (max-width:760px){
+  :root{--m:16px;--g:12px;--s-body:13px;--s-large:16px;--s-small:11px}
+  .top{padding-top:16px;min-height:72px}
+  .grid{display:flex;flex-direction:column}
+  .col{display:contents}
+  .project,.col-right .project{grid-template-columns:1fr;grid-row:auto;grid-template-rows:none;row-gap:14px;padding:14px max(16px, env(safe-area-inset-right,0px)) 20px max(16px, env(safe-area-inset-left,0px));border-left:0}
+  .head,.body,.slides{grid-column:1/-1}
+  .body{gap:1em}
+  .head,.body{padding-bottom:0}
+  .slides{--inset:10px;--ico:16px}
+  .info{max-width:none}
+  .info-top{flex-direction:column-reverse;align-items:stretch;gap:24px;padding-bottom:40px}
+  .info-top .nav{align-self:flex-end}
+  .foot{padding-block:16px}
+  .lightbox{--lb-ico:16px;--lb-gap:8px}
+  .lb-img{max-width:calc(100vw - 64px);max-height:80vh}
+  .lightbox .prev,.lightbox .next{width:32px}
+  .lb-close{top:calc(16px + env(safe-area-inset-top,0px))}
+  .lb-caption{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="work-view">
+  <header class="top">
+    <a class="mark" href="#">Applied Graphics Office</a>
+    <a class="nav" href="#information">Information</a>
+  </header>
+  <main class="grid">
+    <div class="col col-left">
+  <article class="project" id="mitgera-11" style="order:0">
+    <div class="head">
+      <h2><a href="#mitgera-11">Mitgera 11</a></h2>
+      <ul class="tags"><li>Visual Identity</li><li>Editorial Design</li><li>Print Design</li></ul>
+    </div>
+    <div class="body">
+      <p>Identity and sales dossier for Mitgera 11, a twenty-two-home development in Tarragona’s Part Baixa. The name, Catalan for party wall, sets the tone for the wordmark and for a boxed ring binder covering the location, the building, the apartment types and the specifications.</p>
+      <p class="meta">Year: 2026<br>Context: Concept project</p>
+    </div>
+    <div class="slides" data-count="11">
+      <button class="frame" type="button" aria-label="Enlarge Mitgera 11"><img src="img/mitgera-11-1.jpg" alt="Mitgera 11, image 1 of 11" loading="lazy" decoding="async"><img src="img/mitgera-11-2.jpg" alt="Mitgera 11, image 2 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-3.jpg" alt="Mitgera 11, image 3 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-4.jpg" alt="Mitgera 11, image 4 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-5.jpg" alt="Mitgera 11, image 5 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-6.jpg" alt="Mitgera 11, image 6 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-7.jpg" alt="Mitgera 11, image 7 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-8.jpg" alt="Mitgera 11, image 8 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-9.jpg" alt="Mitgera 11, image 9 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-10.jpg" alt="Mitgera 11, image 10 of 11" loading="lazy" decoding="async" hidden><img src="img/mitgera-11-11.jpg" alt="Mitgera 11, image 11 of 11" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="munsell-color-system" style="order:2">
+    <div class="head">
+      <h2><a href="#munsell-color-system">Munsell Color System</a></h2>
+      <ul class="tags"><li>Infographic Design</li></ul>
+    </div>
+    <div class="body">
+      <p>An infographic of the Munsell Color System, developed by Albert H. Munsell in the early 20th century, which classifies colour by hue, value and chroma. Modelled in Rhinoceros 3D and refined in Illustrator and InDesign.</p>
+      <p class="meta">Year: 2024<br>Context: Self-initiated</p>
+    </div>
+    <div class="slides" data-count="4">
+      <button class="frame" type="button" aria-label="Enlarge Munsell Color System"><video src="img/munsell-color-system-1.mp4" poster="img/munsell-color-system-1.jpg" aria-label="Munsell Color System, image 1 of 4" muted loop playsinline preload="metadata"></video><img src="img/munsell-color-system-2.jpg" alt="Munsell Color System, image 2 of 4" loading="lazy" decoding="async" hidden><img src="img/munsell-color-system-3.jpg" alt="Munsell Color System, image 3 of 4" loading="lazy" decoding="async" hidden><img src="img/munsell-color-system-4.jpg" alt="Munsell Color System, image 4 of 4" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="formgiving-book" style="order:4">
+    <div class="head">
+      <h2><a href="#formgiving-book">Formgiving Book</a></h2>
+      <ul class="tags"><li>Editorial Design</li></ul>
+    </div>
+    <div class="body">
+      <p>Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.</p>
+      <p class="meta">Year: 2020<br>Context: At BIG</p>
+    </div>
+    <div class="slides" data-count="6">
+      <button class="frame" type="button" aria-label="Enlarge Formgiving Book"><img src="img/formgiving-book-1.jpg" alt="Formgiving Book, image 1 of 6" loading="lazy" decoding="async"><img src="img/formgiving-book-2.jpg" alt="Formgiving Book, image 2 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-book-3.jpg" alt="Formgiving Book, image 3 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-book-4.jpg" alt="Formgiving Book, image 4 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-book-5.jpg" alt="Formgiving Book, image 5 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-book-6.jpg" alt="Formgiving Book, image 6 of 6" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="bhq-signage" style="order:6">
+    <div class="head">
+      <h2><a href="#bhq-signage">BHQ Signage &amp; Wayfinding</a></h2>
+      <ul class="tags"><li>Signage &amp; Wayfinding</li><li>Icon Design</li></ul>
+    </div>
+    <div class="body">
+      <p>An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. Every icon is drawn on the same construction grid and line weight, so new ones can be added in the same language.</p>
+      <p class="meta">Year: 2022<br>Context: Self-initiated, at BIG</p>
+    </div>
+    <div class="slides" data-count="6">
+      <button class="frame" type="button" aria-label="Enlarge BHQ Signage &amp; Wayfinding"><video src="img/bhq-signage-1.mp4" poster="img/bhq-signage-1.jpg" aria-label="BHQ Signage &amp; Wayfinding, image 1 of 6" muted loop playsinline preload="metadata"></video><img src="img/bhq-signage-2.jpg" alt="BHQ Signage &amp; Wayfinding, image 2 of 6" loading="lazy" decoding="async" hidden><img src="img/bhq-signage-3.jpg" alt="BHQ Signage &amp; Wayfinding, image 3 of 6" loading="lazy" decoding="async" hidden><img src="img/bhq-signage-4.jpg" alt="BHQ Signage &amp; Wayfinding, image 4 of 6" loading="lazy" decoding="async" hidden><img src="img/bhq-signage-5.jpg" alt="BHQ Signage &amp; Wayfinding, image 5 of 6" loading="lazy" decoding="async" hidden><img src="img/bhq-signage-6.jpg" alt="BHQ Signage &amp; Wayfinding, image 6 of 6" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+    </div>
+    <div class="col col-right">
+  <article class="project" id="arctic-edge" style="order:1">
+    <div class="head">
+      <h2><a href="#arctic-edge">From the Arctic Edge to Ocean Bloom</a></h2>
+      <ul class="tags"><li>Editorial Design</li><li>3D Illustration</li></ul>
+    </div>
+    <div class="body">
+      <p>Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.</p>
+      <p class="meta">Year: 2022<br>Context: Extiv Expeditions</p>
+    </div>
+    <div class="slides" data-count="13">
+      <button class="frame" type="button" aria-label="Enlarge From the Arctic Edge to Ocean Bloom"><img src="img/arctic-edge-1.jpg" alt="From the Arctic Edge to Ocean Bloom, image 1 of 13" loading="lazy" decoding="async"><img src="img/arctic-edge-2.jpg" alt="From the Arctic Edge to Ocean Bloom, image 2 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-3.jpg" alt="From the Arctic Edge to Ocean Bloom, image 3 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-4.jpg" alt="From the Arctic Edge to Ocean Bloom, image 4 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-5.jpg" alt="From the Arctic Edge to Ocean Bloom, image 5 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-6.jpg" alt="From the Arctic Edge to Ocean Bloom, image 6 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-7.jpg" alt="From the Arctic Edge to Ocean Bloom, image 7 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-8.jpg" alt="From the Arctic Edge to Ocean Bloom, image 8 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-9.jpg" alt="From the Arctic Edge to Ocean Bloom, image 9 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-10.jpg" alt="From the Arctic Edge to Ocean Bloom, image 10 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-11.jpg" alt="From the Arctic Edge to Ocean Bloom, image 11 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-12.jpg" alt="From the Arctic Edge to Ocean Bloom, image 12 of 13" loading="lazy" decoding="async" hidden><img src="img/arctic-edge-13.jpg" alt="From the Arctic Edge to Ocean Bloom, image 13 of 13" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="3daysofdesign" style="order:3">
+    <div class="head">
+      <h2><a href="#3daysofdesign">3daysofdesign Graphic Identity</a></h2>
+      <ul class="tags"><li>Visual Identity</li><li>3D Illustration</li></ul>
+    </div>
+    <div class="body">
+      <p>Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.</p>
+      <p class="meta">Year: 2024<br>Context: At BIG, for 3daysofdesign</p>
+    </div>
+    <div class="slides" data-count="5">
+      <button class="frame" type="button" aria-label="Enlarge 3daysofdesign Graphic Identity"><img src="img/3daysofdesign-1.jpg" alt="3daysofdesign Graphic Identity, image 1 of 5" loading="lazy" decoding="async"><img src="img/3daysofdesign-2.jpg" alt="3daysofdesign Graphic Identity, image 2 of 5" loading="lazy" decoding="async" hidden><img src="img/3daysofdesign-3.jpg" alt="3daysofdesign Graphic Identity, image 3 of 5" loading="lazy" decoding="async" hidden><img src="img/3daysofdesign-4.jpg" alt="3daysofdesign Graphic Identity, image 4 of 5" loading="lazy" decoding="async" hidden><img src="img/3daysofdesign-5.jpg" alt="3daysofdesign Graphic Identity, image 5 of 5" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="architects-guide" style="order:5">
+    <div class="head">
+      <h2><a href="#architects-guide">The Architect’s Guide to the Galaxy</a></h2>
+      <ul class="tags"><li>Editorial Design</li><li>3D Illustration</li></ul>
+    </div>
+    <div class="body">
+      <p>Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.</p>
+      <p class="meta">Year: 2018<br>Context: At BIG</p>
+    </div>
+    <div class="slides" data-count="12">
+      <button class="frame" type="button" aria-label="Enlarge The Architect’s Guide to the Galaxy"><img src="img/architects-guide-1.jpg" alt="The Architect’s Guide to the Galaxy, image 1 of 12" loading="lazy" decoding="async"><img src="img/architects-guide-2.jpg" alt="The Architect’s Guide to the Galaxy, image 2 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-3.jpg" alt="The Architect’s Guide to the Galaxy, image 3 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-4.jpg" alt="The Architect’s Guide to the Galaxy, image 4 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-5.jpg" alt="The Architect’s Guide to the Galaxy, image 5 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-6.jpg" alt="The Architect’s Guide to the Galaxy, image 6 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-7.jpg" alt="The Architect’s Guide to the Galaxy, image 7 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-8.jpg" alt="The Architect’s Guide to the Galaxy, image 8 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-9.jpg" alt="The Architect’s Guide to the Galaxy, image 9 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-10.jpg" alt="The Architect’s Guide to the Galaxy, image 10 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-11.jpg" alt="The Architect’s Guide to the Galaxy, image 11 of 12" loading="lazy" decoding="async" hidden><img src="img/architects-guide-12.jpg" alt="The Architect’s Guide to the Galaxy, image 12 of 12" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+  <article class="project" id="formgiving-exhibition" style="order:7">
+    <div class="head">
+      <h2><a href="#formgiving-exhibition">Formgiving Exhibition</a></h2>
+      <ul class="tags"><li>Visual Identity</li><li>Print Design</li><li>Exhibition Design</li></ul>
+    </div>
+    <div class="body">
+      <p>Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.</p>
+      <p class="meta">Year: 2019<br>Context: At BIG</p>
+    </div>
+    <div class="slides" data-count="6">
+      <button class="frame" type="button" aria-label="Enlarge Formgiving Exhibition"><img src="img/formgiving-exhibition-1.jpg" alt="Formgiving Exhibition, image 1 of 6" loading="lazy" decoding="async"><img src="img/formgiving-exhibition-2.jpg" alt="Formgiving Exhibition, image 2 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-exhibition-3.jpg" alt="Formgiving Exhibition, image 3 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-exhibition-4.jpg" alt="Formgiving Exhibition, image 4 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-exhibition-5.jpg" alt="Formgiving Exhibition, image 5 of 6" loading="lazy" decoding="async" hidden><img src="img/formgiving-exhibition-6.jpg" alt="Formgiving Exhibition, image 6 of 6" loading="lazy" decoding="async" hidden></button>
+      <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+      <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+      <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
+  </article>
+    </div>
+  </main>
+</div>
+<div id="info-view" hidden>
+  <div class="top info-top">
+  <main class="info">
+    <p><a class="mark" href="#">Applied Graphics Office</a> is a design studio founded by Paula Madrid, working at the intersection of architecture and graphic design.</p>
+    <p>The studio focuses on signage and wayfinding, visual identity and editorial design for architecture studios and spatial practices, locally and internationally. Coming from architecture, it treats graphic design as part of the same process that shapes a building: not something applied afterwards, but a layer of how a project is read, navigated and communicated, from the identity system to the finished space.</p>
+    <p class="contact">Email: <a href="mailto:hi@appliedgraphicsoffice.com">hi@appliedgraphicsoffice.com</a><br>Instagram: <a href="https://www.instagram.com/appliedgraphicsoffice/" target="_blank" rel="noopener">@appliedgraphicsoffice</a></p>
+  </main>
+  <a class="nav" href="#">Work</a>
+  </div>
+</div>
+<footer class="foot">© 2026 Applied Graphics Office</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged images">
+  <button class="lb-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16"><path d="M2 2l12 12M14 2 2 14"/></svg></button>
+  <div class="lb-stage">
+    <img class="lb-img" alt="">
+    <video class="lb-img lb-vid" muted loop playsinline hidden></video>
+    <button class="prev" type="button" aria-label="Previous image"><svg viewBox="0 0 16 16"><path d="M15 8H1M6 3 1 8l5 5"/></svg></button>
+    <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
+  </div>
+  <span class="lb-caption"></span>
+</div>
+
+<script>(function () {
+  var work = document.getElementById('work-view');
+  var info = document.getElementById('info-view');
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img.lb-img');
+  var lbVid = lb.querySelector('.lb-vid');
+  var lbCap = lb.querySelector('.lb-caption');
+  var current = null; // {slides, title, i}
+
+  /* views: #information shows the studio text, anything else shows the work */
+  function route() {
+    var h = location.hash.slice(1);
+    var isInfo = h === 'information';
+    info.hidden = !isInfo;
+    work.hidden = isInfo;
+    if (isInfo) { window.scrollTo(0, 0); return; }
+    var el = h && document.getElementById(h);
+    if (el) el.scrollIntoView(); else if (!h) window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  /* slideshows */
+  function imgs(s) { return s.querySelectorAll('.frame > img, .frame > video'); }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var EASE = 'transform .55s cubic-bezier(.25,.8,.25,1)';
+  function play(v) { if (!reduce.matches) { var r = v.play(); if (r && r.catch) r.catch(function () {}); } }
+  /* videos play only while their slideshow is on screen */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      var s = en.target, v = imgs(s)[idx(s)];
+      if (v && v.tagName === 'VIDEO') { if (en.isIntersecting) play(v); else v.pause(); }
+    });
+  }) : null;
+  if (io) document.querySelectorAll('.slides').forEach(function (s) { if (s.querySelector('video')) io.observe(s); });
+  function idx(s) { return +(s.dataset.i || 0); }
+  /* slide the current image out and the new one in from the side it comes from */
+  function show(s, i, dir) {
+    var l = imgs(s), n = l.length, cur = idx(s);
+    i = (i + n) % n;
+    if (i === cur) return i;
+    var a = l[cur], b = l[i];
+    for (var k = 0; k < n; k++) if (k !== cur && k !== i) { l[k].hidden = true; l[k].style.transition = ''; l[k].style.transform = ''; }
+    s.dataset.i = i;
+    if (reduce.matches) { a.hidden = true; b.hidden = false; }
+    else {
+      b.style.transition = 'none';
+      b.style.transform = 'translateX(' + (dir * 100) + '%)';
+      b.hidden = false;
+      void b.offsetWidth; // start position applied before animating
+      a.style.transition = b.style.transition = EASE;
+      a.style.transform = 'translateX(' + (-dir * 100) + '%)';
+      b.style.transform = 'translateX(0)';
+      setTimeout(function () {
+        if (l[idx(s)] !== a) a.hidden = true;
+        a.style.transition = ''; a.style.transform = '';
+      }, 600);
+    }
+    if (a.tagName === 'VIDEO') a.pause();
+    if (b.tagName === 'VIDEO') play(b);
+    l[(i + 1) % n].loading = 'eager'; // warm the next one
+    return i;
+  }
+  document.querySelectorAll('.slides').forEach(function (s) {
+    var title = s.closest('.project').querySelector('h2').textContent;
+    s.querySelector('.prev').addEventListener('click', function () { show(s, idx(s) - 1, -1); });
+    s.querySelector('.next').addEventListener('click', function () { show(s, idx(s) + 1, 1); });
+    s.querySelector('.frame').addEventListener('click', function () { open(s, title); });
+    s.querySelector('.enlarge').addEventListener('click', function (e) { e.stopPropagation(); open(s, title); });
+    swipe(s, function (d) { show(s, idx(s) + d, d); });
+  });
+
+  /* lightbox */
+  function paint(d) {
+    var l = imgs(current.slides), img = l[current.i];
+    var isVid = img.tagName === 'VIDEO', el = isVid ? lbVid : lbImg;
+    lbImg.hidden = isVid; lbVid.hidden = !isVid;
+    if (isVid) { if (lbVid.getAttribute('src') !== img.getAttribute('src')) lbVid.src = img.getAttribute('src'); play(lbVid); }
+    else { lbVid.pause(); lbImg.src = img.currentSrc || img.src; }
+    if (d && el.animate && !reduce.matches)
+      el.animate([{ transform: 'translateX(' + (d * 6) + '%)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { duration: 450, easing: 'cubic-bezier(.25,.8,.25,1)' });
+    lbImg.alt = img.alt || '';
+    lbCap.innerHTML = '';
+    var b = document.createElement('b'); b.textContent = current.title;
+    lbCap.append(b, '  ' + (current.i + 1) + ' / ' + l.length);
+  }
+  function step(d) {
+    current.i = show(current.slides, current.i + d, d); // keeps the page slideshow in step
+    paint(d);
+  }
+  function open(s, title) {
+    current = { slides: s, title: title, i: idx(s) };
+    paint();
+    lb.hidden = false;
+    document.body.classList.add('locked');
+    lb.querySelector('.lb-close').focus();
+  }
+  function close() {
+    lbVid.pause();
+    lb.hidden = true;
+    document.body.classList.remove('locked');
+    if (current) current.slides.querySelector('.frame').focus();
+    current = null;
+  }
+  lb.querySelector('.prev').addEventListener('click', function () { step(-1); });
+  lb.querySelector('.next').addEventListener('click', function () { step(1); });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  swipe(lb, function (d) { step(d); });
+  document.addEventListener('keydown', function (e) {
+    if (!current) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') step(-1);
+    else if (e.key === 'ArrowRight') step(1);
+  });
+
+  /* desktop rows: both projects in a row get the text height of the taller one when closed,
+     so images line up; each column still stacks on its own */
+  var mobile = window.matchMedia('(max-width:760px)');
+  function alignRows() {
+    var ps = Array.prototype.slice.call(document.querySelectorAll('.project'));
+    ps.forEach(function (p) { p.style.removeProperty('--row-h'); });
+    if (mobile.matches) return;
+    function closedH(p) {
+      function hgt(el) { return el.getBoundingClientRect().height; }
+      return Math.ceil(Math.max(hgt(p.querySelector('.head')),
+                                hgt(p.querySelector('.body'))));
+    }
+    var L = document.querySelectorAll('.col-left .project'), R = document.querySelectorAll('.col-right .project');
+    for (var i = 0; i < L.length; i++) {
+      var pair = R[i] ? [L[i], R[i]] : [L[i]];
+      var h = Math.max.apply(null, pair.map(closedH));
+      pair.forEach(function (p) { p.style.setProperty('--row-h', h + 'px'); });
+    }
+  }
+  alignRows();
+  window.addEventListener('resize', alignRows);
+  window.addEventListener('hashchange', alignRows); // the work view measures 0 while hidden
+  if (document.fonts) document.fonts.ready.then(alignRows);
+
+  /* horizontal swipe on touch screens */
+  function swipe(el, fn) {
+    var x0 = null, y0 = null;
+    el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        fn(dx < 0 ? 1 : -1);
+        el.dataset.swiped = '1'; setTimeout(function () { delete el.dataset.swiped; }, 400);
+      }
+      x0 = null;
+    }, { passive: true });
+    el.addEventListener('click', function (e) { if (el.dataset.swiped) { e.stopPropagation(); e.preventDefault(); } }, true);
+  }
+})();
+</script>
+</body>
+</html>
