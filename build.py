@@ -62,7 +62,7 @@ def project(p, i=0):
     </div>
     <div class="body">
       <p>{e(p["text"])}</p>
-      <p class="meta">Year: {e(p["year"])}<br>{e(p["credit"][0])}: {e(p["credit"][1])}</p>
+      <p class="meta">Year: {e(p["year"])}</p>
     </div>
     <div class="slides" data-count="{p["images"]}">
       <button class="frame" type="button" aria-label="Enlarge {e(p["title"])}">{slides}</button>
