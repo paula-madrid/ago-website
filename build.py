@@ -19,10 +19,10 @@ PROJECTS = [
          year="2024", credit=("Context", "Self-initiated"), images=5, videos=[1]),
     dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
          text="Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.",
-         year="2024", credit=("Studio", "BIG"), press=("Dezeen", "https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/"), images=5),
+         year="2024", credit=("Studio", "BIG"), press=[('Dezeen', 'https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/'), ('IFDM', 'https://ifdm.design/2024/06/03/dedicated-to-dreamers/'), ('Interior Daily', 'https://www.interiordaily.com/article/9634851/3daysofdesign-2024-has-kicked-off-in-copenhagen/')], images=5),
     dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design"],
          text="Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.",
-         year="2020", credit=("Studio", "BIG"), press=("designboom", "https://www.designboom.com/architecture/big-formgiving-an-architectural-future-history-taschen-12-19-2020/"), images=6),
+         year="2020", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/big-formgiving-an-architectural-future-history-taschen-12-19-2020/'), ('TASCHEN', 'https://www.taschen.com/en/books/architecture-design/04679/big-formgiving-an-architectural-future-history/'), ('art4d', 'https://art4d.com/en/2021/01/big-formgiving')], images=6),
     dict(slug="architects-guide", title="The Architect’s Guide to the Galaxy", tags=["Editorial Design", "3D Illustration"],
          text="Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.",
          year="2018", credit=("Studio", "BIG"), images=12),
@@ -31,7 +31,7 @@ PROJECTS = [
          year="2022", credit=("Studio", "BIG"), images=6, videos=[1]),
     dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
          text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
-         year="2019", credit=("Studio", "BIG"), press=("designboom", "https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/"), images=6),
+         year="2019", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/'), ('Floornature', 'https://www.floornature.com/danish-architecture-centre-and-big-exhibition-formgiving-nda-14759/'), ('Scandinavian Design', 'https://scandinaviandesign.com/explore-bigs-world-of-form-and-color-danish-architecture-centre/')], images=6),
 ]
 
 INFO = [
@@ -47,8 +47,8 @@ e = html.escape
 def press(p):
     if not p.get("press"):
         return ""
-    name, url = p["press"]
-    return f'<br>Press: <a href="{e(url)}" target="_blank" rel="noopener">{e(name)}</a>'
+    links = ", ".join(f'<a href="{e(u)}" target="_blank" rel="noopener">{e(n)}</a>' for n, u in p["press"])
+    return f"<br>Press: {links}"
 
 
 def project(p, i=0):
