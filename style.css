@@ -75,8 +75,8 @@ h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-t
 .info{max-width:calc(50vw - var(--m) - var(--g)/2);min-width:0;color:var(--text);line-height:var(--lh);display:flex;flex-direction:column;gap:1.3em}
 .info .mark{color:var(--ink)}
 .info .contact{margin-top:1.3em}
-.info a:not(.mark){border-bottom:1px solid transparent}
-.info a:not(.mark):hover{border-bottom-color:currentColor}
+.info a:not(.mark){text-decoration:underline dashed transparent;text-decoration-thickness:1.5px;text-underline-offset:.22em;transition:text-decoration-color .15s}
+.info a:not(.mark):hover{text-decoration-color:currentColor}
 
 /* footer */
 .foot{font-size:var(--s-small);color:var(--meta);padding:1.4vw max(var(--m), env(safe-area-inset-right,0px)) max(1.4vw, env(safe-area-inset-bottom,0px)) max(var(--m), env(safe-area-inset-left,0px))}
