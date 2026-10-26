@@ -1,6 +1,6 @@
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -28,6 +28,9 @@ p{margin:0}
 .top{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--s-large);color:var(--ink);
   padding:2.2vw max(var(--m), env(safe-area-inset-right,0px)) 0 max(var(--m), env(safe-area-inset-left,0px));min-height:9.5vw}
 .top .mark{color:var(--ink)}
+/* faint pill behind the header links on hover; padding and negative margin cancel out, so nothing moves */
+.top .mark,.top .nav,.info .mark{border-radius:.3em;padding:.1em .3em;margin:-.1em -.3em;transition:background-color .15s}
+@media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
 
 /* work grid */

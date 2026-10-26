@@ -17,7 +17,7 @@
 @font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -45,6 +45,9 @@ p{margin:0}
 .top{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--s-large);color:var(--ink);
   padding:2.2vw max(var(--m), env(safe-area-inset-right,0px)) 0 max(var(--m), env(safe-area-inset-left,0px));min-height:9.5vw}
 .top .mark{color:var(--ink)}
+/* faint pill behind the header links on hover; padding and negative margin cancel out, so nothing moves */
+.top .mark,.top .nav,.info .mark{border-radius:.3em;padding:.1em .3em;margin:-.1em -.3em;transition:background-color .15s}
+@media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
 
 /* work grid */
