@@ -16,7 +16,7 @@ PROJECTS = [
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
     dict(slug="munsell-color-system", title="Munsell Color System", tags=["Infographic Design"],
          text="An infographic of the Munsell Color System, developed by Albert H. Munsell in the early 20th century, which classifies colour by hue, value and chroma. Modelled in Rhinoceros 3D and refined in Illustrator and InDesign.",
-         year="2024", credit=("Context", "Self-initiated"), images=4, videos=[1]),
+         year="2024", credit=("Context", "Self-initiated"), images=5, videos=[1]),
     dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
          text="Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.",
          year="2024", credit=("Context", "At BIG, for 3daysofdesign"), images=5),
