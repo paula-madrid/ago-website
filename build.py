@@ -13,7 +13,7 @@ PROJECTS = [
          year="2024", credit=("Studio", "BIG"), press=[('Dezeen', 'https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/'), ('IFDM', 'https://ifdm.design/2024/06/03/dedicated-to-dreamers/'), ('Interior Daily', 'https://www.interiordaily.com/article/9634851/3daysofdesign-2024-has-kicked-off-in-copenhagen/')], images=5),
     dict(slug="mitgera-11", title="Mitgera 11", tags=["Visual Identity", "Editorial Design", "Print Design"],
          text="Identity and sales dossier for Mitgera 11, a twenty-two-home development in Tarragona’s Part Baixa. The name, Catalan for party wall, sets the tone for the wordmark and for a boxed ring binder covering the location, the building, the apartment types and the specifications.",
-         year="2026", credit=("Context", "Concept project"), images=11),
+         year="2026", credit=("Context", "Llavor Homes"), images=11),
     dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design"],
          text="Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.",
          year="2020", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/big-formgiving-an-architectural-future-history-taschen-12-19-2020/'), ('TASCHEN', 'https://www.taschen.com/en/books/architecture-design/04679/big-formgiving-an-architectural-future-history/'), ('art4d', 'https://art4d.com/en/2021/01/big-formgiving')], images=6),
@@ -28,7 +28,7 @@ PROJECTS = [
          year="2018", credit=("Studio", "BIG"), images=12),
     dict(slug="munsell-color-system", title="Munsell Color System", tags=["Infographic Design"],
          text="An infographic of the Munsell Color System, developed by Albert H. Munsell in the early 20th century, which classifies colour by hue, value and chroma. Modelled in Rhinoceros 3D and refined in Illustrator and InDesign.",
-         year="2024", credit=("Context", "Self-initiated"), images=5, videos=[1]),
+         year="2024", images=5, videos=[1]),
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
@@ -42,6 +42,12 @@ EMAIL = "hi@appliedgraphicsoffice.com"
 INSTAGRAM = "appliedgraphicsoffice"
 
 e = html.escape
+
+
+def credit(p):
+    if not p.get("credit"):
+        return ""
+    return f'<br>{e(p["credit"][0])}: {e(p["credit"][1])}'
 
 
 def press(p):
@@ -69,7 +75,7 @@ def project(p, i=0):
     </div>
     <div class="body">
       <p>{e(p["text"])}</p>
-      <p class="meta">Year: {e(p["year"])}<br>{e(p["credit"][0])}: {e(p["credit"][1])}{press(p)}</p>
+      <p class="meta">Year: {e(p["year"])}{credit(p)}{press(p)}</p>
     </div>
     <div class="slides" data-count="{p["images"]}">
       <button class="frame" type="button" aria-label="Enlarge {e(p["title"])}">{slides}</button>
