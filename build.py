@@ -35,8 +35,8 @@ PROJECTS = [
 ]
 
 INFO = [
-    "is a design studio founded by Paula Madrid, working at the intersection of architecture and graphic design.",
-    "The studio focuses on signage and wayfinding, visual identity and editorial design for architecture studios and spatial practices, locally and internationally. Coming from architecture, it treats graphic design as part of the same process that shapes a building: not something applied afterwards, but a layer of how a project is read, navigated and communicated, from the identity system to the finished space.",
+    "is a design studio founded by Paula Madrid, working at the intersection of space, information and graphic design.",
+    "The studio focuses on signage and wayfinding, visual identity and editorial design for studios, institutions and cultural projects, locally and internationally. With a background in architecture, it treats graphic design as part of how things are built and understood: not something applied afterwards, but a layer of how a project is read, navigated and communicated, from the identity system to the finished space.",
 ]
 EMAIL = "hi@appliedgraphicsoffice.com"
 INSTAGRAM = "appliedgraphicsoffice"
