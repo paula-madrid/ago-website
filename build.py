@@ -126,10 +126,15 @@ BODY = f'''
 '''
 
 META = '''<title>Applied Graphics Office</title>
-<meta name="description" content="Applied Graphics Office is a Copenhagen design studio working at the intersection of architecture and graphic design: signage and wayfinding, visual identity and editorial design.">
+<meta name="description" content="Applied Graphics Office is a Copenhagen design studio working at the intersection of space, information and graphic design: signage and wayfinding, visual identity and editorial design.">
 <meta property="og:title" content="Applied Graphics Office">
-<meta property="og:description" content="Signage and wayfinding, visual identity and editorial design for architecture studios and spatial practices.">
-<meta property="og:image" content="https://www.appliedgraphicsoffice.com/img/mitgera-11-1.jpg">'''
+<meta property="og:description" content="A design studio working at the intersection of space, information and graphic design. Signage and wayfinding, visual identity and editorial design.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.appliedgraphicsoffice.com/">
+<meta property="og:image" content="https://www.appliedgraphicsoffice.com/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">'''
 
 FONT_LOCAL = '''@font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
