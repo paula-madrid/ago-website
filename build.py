@@ -8,15 +8,15 @@ import html, pathlib
 ROOT = pathlib.Path(__file__).parent
 
 PROJECTS = [
-    dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
-         text="Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.",
-         year="2024", credit=("Studio", "BIG"), press=[('Dezeen', 'https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/'), ('IFDM', 'https://ifdm.design/2024/06/03/dedicated-to-dreamers/'), ('Interior Daily', 'https://www.interiordaily.com/article/9634851/3daysofdesign-2024-has-kicked-off-in-copenhagen/')], images=5),
-    dict(slug="mitgera-11", title="Mitgera 11", tags=["Visual Identity", "Editorial Design", "Print Design"],
-         text="Identity and sales dossier for Mitgera 11, a twenty-two-home development in Tarragona’s Part Baixa. The name, Catalan for party wall, sets the tone for the wordmark and for a boxed ring binder covering the location, the building, the apartment types and the specifications.",
-         year="2026", credit=("Context", "Llavor Homes"), images=11),
     dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design"],
          text="Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.",
          year="2020", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/big-formgiving-an-architectural-future-history-taschen-12-19-2020/'), ('TASCHEN', 'https://www.taschen.com/en/books/architecture-design/04679/big-formgiving-an-architectural-future-history/'), ('art4d', 'https://art4d.com/en/2021/01/big-formgiving')], images=6),
+    dict(slug="mitgera-11", title="Mitgera 11", tags=["Visual Identity", "Editorial Design", "Print Design"],
+         text="Identity and sales dossier for Mitgera 11, a twenty-two-home development in Tarragona’s Part Baixa. The name, Catalan for party wall, sets the tone for the wordmark and for a boxed ring binder covering the location, the building, the apartment types and the specifications.",
+         year="2026", credit=("Context", "Llavor Homes"), images=11),
+    dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
+         text="Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.",
+         year="2024", credit=("Studio", "BIG"), press=[('Dezeen', 'https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/'), ('IFDM', 'https://ifdm.design/2024/06/03/dedicated-to-dreamers/'), ('Interior Daily', 'https://www.interiordaily.com/article/9634851/3daysofdesign-2024-has-kicked-off-in-copenhagen/')], images=5),
     dict(slug="bhq-signage", title="BHQ Signage & Wayfinding", tags=["Signage & Wayfinding", "Icon Design"],
          text="An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. One grid, one line weight: every icon belongs to the same family.",
          year="2022", credit=("Studio", "BIG"), images=6, videos=[1]),
