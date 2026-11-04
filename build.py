@@ -32,9 +32,9 @@ PROJECTS = [
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
-    dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design"],
-         text="Publication documenting a dwelling module for Makeni, Sierra Leone, built from freight pallets, used tyres and iroko. Thirty-six pages bring the original construction drawings together with the site, the climate and the assembly sequence, redrawn and set as a single document.",
-         year="2016", images=1),
+    dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design", "Architectural Drawing"],
+         text="Publication for a dwelling module in Makeni, Sierra Leone, built from freight pallets, used tyres and iroko. The original construction drawings are redrawn and set alongside the site, the climate and the assembly sequence.",
+         year="2016", credit=("Context", "Master’s thesis, San Pablo CEU"), images=1),
 ]
 
 INFO = [
