@@ -32,6 +32,9 @@ PROJECTS = [
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
+    dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design"],
+         text="Sales dossier for Park Residences, two timber residential buildings by Proforma Studio set in an apricot orchard in Goght, near Garni, Armenia. The dossier moves from the orchard concept through the site and building to each apartment type, with the architects’ drawings redrawn as one consistent set.",
+         year="2026", credit=("Context", "Proforma Studio"), images=8),
 ]
 
 INFO = [
