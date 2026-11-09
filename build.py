@@ -19,7 +19,7 @@ PROJECTS = [
          year="2024", credit=("Studio", "BIG"), press=[('Dezeen', 'https://www.dezeen.com/2024/02/27/big-3-days-of-design-2024-visual-identity/'), ('IFDM', 'https://ifdm.design/2024/06/03/dedicated-to-dreamers/'), ('Interior Daily', 'https://www.interiordaily.com/article/9634851/3daysofdesign-2024-has-kicked-off-in-copenhagen/')], images=5),
     dict(slug="bhq-signage", title="BHQ Signage & Wayfinding", tags=["Signage & Wayfinding", "Icon Design"],
          text="An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. One grid, one line weight: every icon belongs to the same family.",
-         year="2022", credit=("Studio", "BIG"), images=9, videos=[1]),
+         year="2022", credit=("Studio", "BIG"), images=8, videos=[1]),
     dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
          text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
          year="2019", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/'), ('DAC', 'https://dac.dk/en/exhibitions/big-presents-formgiving'), ('Scandinavian Design', 'https://scandinaviandesign.com/explore-bigs-world-of-form-and-color-danish-architecture-centre/')], images=7),
@@ -35,6 +35,9 @@ PROJECTS = [
     dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design"],
          text="Sales dossier for Park Residences, two timber residential buildings by Proforma Studio set in an apricot orchard in Goght, near Garni, Armenia. The dossier moves from the orchard concept through the site and building to each apartment type, with the architects’ drawings redrawn as one consistent set.",
          year="2026", credit=("Context", "Proforma Studio"), images=8),
+    dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design", "Project Documentation"],
+         text="Publication for a dwelling module in Makeni, Sierra Leone, built from freight pallets, used tyres and iroko. The original construction drawings are redrawn and set alongside the site, the climate and the assembly sequence.",
+         year="2016", credit=("Context", "Master’s thesis, San Pablo CEU"), images=1),
 ]
 
 INFO = [
