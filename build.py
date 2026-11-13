@@ -51,14 +51,6 @@ INSTAGRAM = "appliedgraphicsoffice"
 e = html.escape
 
 
-# tag colours follow the studio's three service groups
-TAG_GROUP = {
-    "Editorial Design": "edit", "Project Documentation": "edit", "3D Illustration": "edit", "Infographic Design": "edit",
-    "Signage & Wayfinding": "env", "Icon Design": "env", "Exhibition Design": "env",
-    "Visual Identity": "id", "Print Design": "id",
-}
-
-
 def credit(p):
     if not p.get("credit"):
         return ""
@@ -81,7 +73,7 @@ def project(p, i=0):
                     f'muted loop playsinline preload="metadata"{hid}></video>')
         return f'<img src="img/{p["slug"]}-{n}.jpg" alt="{alt}" loading="lazy" decoding="async"{hid}>'
     slides = "".join(slide(n) for n in range(1, p["images"] + 1))
-    tags = "".join(f'<li><button class="tag g-{TAG_GROUP.get(t, "edit")}" type="button" data-tag="{e(t)}" data-group="{TAG_GROUP.get(t, "edit")}">{e(t)}</button></li>' for t in p["tags"])
+    tags = "".join(f'<li><button class="tag" type="button" data-tag="{e(t)}">{e(t)}</button></li>' for t in p["tags"])
     return f'''
   <article class="project" id="{p["slug"]}" data-i="{i}" data-tags="{e("|".join(p["tags"]))}" style="order:{i}">
     <div class="head">

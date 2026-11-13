@@ -152,13 +152,7 @@
     all.forEach(function (p) { if (p.hidden) colL.appendChild(p); });
     document.querySelectorAll('.tag').forEach(function (b) { b.classList.toggle('active', b.dataset.tag === tag); });
     clearBtn.hidden = !tag;
-    clearBtn.className = 'filter-clear';
-    document.querySelector('.grid').classList.toggle('filtering', !!tag);
-    if (tag) {
-      clearBtn.querySelector('span').textContent = tag;
-      var src = document.querySelector('.tag[data-tag="' + tag.replace(/"/g, '\\"') + '"]');
-      if (src) clearBtn.classList.add('g-' + src.dataset.group);
-    }
+    if (tag) clearBtn.querySelector('span').textContent = tag;
     alignRows();
   }
   document.querySelectorAll('.tag').forEach(function (b) {
