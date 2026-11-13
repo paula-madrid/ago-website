@@ -1,6 +1,6 @@
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec; --link:#3266cf;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --tag-hover:#a9a9a9; --pill:#eeeeec; --link:#3266cf;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -31,6 +31,11 @@ p{margin:0}
 /* faint pill behind the header links on hover; padding and negative margin cancel out, so nothing moves */
 .top .mark,.top .nav,.info .mark{border-radius:.3em;padding:.1em .3em;margin:-.1em -.3em;transition:background-color .15s}
 @media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
+/* work header: name over the left column, filter + Information over the right */
+.work-top{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);align-items:baseline}
+.work-top .mark{justify-self:start}
+.top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
+.top-r .nav{margin-left:auto}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
 
 /* work grid */
@@ -46,7 +51,15 @@ p{margin:0}
 .slides{grid-column:1/5}
 h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
-.tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
+.tags li{display:flex}
+/* pills filter the grid; the active one turns dark */
+.tag,.filter-clear{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
+  cursor:pointer;transition:background-color .15s}
+@media (hover:hover){.tag:hover{background:var(--tag-hover)}}
+.tag.active,.filter-clear{background:var(--text)}
+.filter-clear{display:inline-flex;align-items:center;gap:.45em;font-size:calc(var(--s-body)*.86)}
+.filter-clear svg{width:.75em;height:.75em;stroke-width:2}
+@media (hover:hover){.filter-clear:hover{background:var(--ink)}}
 .meta a,.info a:not(.mark){white-space:nowrap}
 /* ↗ after links that leave the site. Drawn as an icon because Inclusive Sans has no arrow glyph,
    and a fallback font would differ between systems */
@@ -108,6 +121,10 @@ body.locked{overflow:hidden}
 @media (max-width:760px){
   :root{--m:16px;--g:12px;--s-body:13px;--s-large:16px;--s-small:11px}
   .top{padding-top:16px;min-height:72px}
+  .work-top{grid-template-columns:auto 1fr;row-gap:12px}
+  .top-r{display:contents}
+  .top-r .nav{justify-self:end;grid-column:2;grid-row:1}
+  .filter-clear{grid-column:1/-1;grid-row:2;justify-self:start}
   .grid{display:flex;flex-direction:column}
   .col{display:contents}
   .project,.col-right .project{grid-template-columns:1fr;grid-row:auto;grid-template-rows:none;row-gap:14px;padding:14px max(16px, env(safe-area-inset-right,0px)) 20px max(16px, env(safe-area-inset-left,0px));border-left:0}

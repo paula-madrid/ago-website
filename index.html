@@ -22,7 +22,7 @@
 @font-face{font-family:"Inclusive Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inclusive-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --pill:#eeeeec; --link:#3266cf;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --tag-hover:#a9a9a9; --pill:#eeeeec; --link:#3266cf;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -53,6 +53,11 @@ p{margin:0}
 /* faint pill behind the header links on hover; padding and negative margin cancel out, so nothing moves */
 .top .mark,.top .nav,.info .mark{border-radius:.3em;padding:.1em .3em;margin:-.1em -.3em;transition:background-color .15s}
 @media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
+/* work header: name over the left column, filter + Information over the right */
+.work-top{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);align-items:baseline}
+.work-top .mark{justify-self:start}
+.top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
+.top-r .nav{margin-left:auto}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
 
 /* work grid */
@@ -68,7 +73,15 @@ p{margin:0}
 .slides{grid-column:1/5}
 h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-transform:uppercase;letter-spacing:inherit;color:var(--ink);text-wrap:balance}
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
-.tags li{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px}
+.tags li{display:flex}
+/* pills filter the grid; the active one turns dark */
+.tag,.filter-clear{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
+  cursor:pointer;transition:background-color .15s}
+@media (hover:hover){.tag:hover{background:var(--tag-hover)}}
+.tag.active,.filter-clear{background:var(--text)}
+.filter-clear{display:inline-flex;align-items:center;gap:.45em;font-size:calc(var(--s-body)*.86)}
+.filter-clear svg{width:.75em;height:.75em;stroke-width:2}
+@media (hover:hover){.filter-clear:hover{background:var(--ink)}}
 .meta a,.info a:not(.mark){white-space:nowrap}
 /* ↗ after links that leave the site. Drawn as an icon because Inclusive Sans has no arrow glyph,
    and a fallback font would differ between systems */
@@ -130,6 +143,10 @@ body.locked{overflow:hidden}
 @media (max-width:760px){
   :root{--m:16px;--g:12px;--s-body:13px;--s-large:16px;--s-small:11px}
   .top{padding-top:16px;min-height:72px}
+  .work-top{grid-template-columns:auto 1fr;row-gap:12px}
+  .top-r{display:contents}
+  .top-r .nav{justify-self:end;grid-column:2;grid-row:1}
+  .filter-clear{grid-column:1/-1;grid-row:2;justify-self:start}
   .grid{display:flex;flex-direction:column}
   .col{display:contents}
   .project,.col-right .project{grid-template-columns:1fr;grid-row:auto;grid-template-rows:none;row-gap:14px;padding:14px max(16px, env(safe-area-inset-right,0px)) 20px max(16px, env(safe-area-inset-left,0px));border-left:0}
@@ -152,16 +169,19 @@ body.locked{overflow:hidden}
 </head>
 <body>
 <div id="work-view">
-  <header class="top">
+  <header class="top work-top">
     <a class="mark" href="#">Applied Graphics Office</a>
-    <a class="nav" href="#information">Information</a>
+    <div class="top-r">
+      <button class="filter-clear" type="button" hidden aria-label="Show all projects"><span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
+      <a class="nav" href="#information">Information</a>
+    </div>
   </header>
   <main class="grid">
     <div class="col col-left">
-  <article class="project" id="formgiving-book" style="order:0">
+  <article class="project" id="formgiving-book" data-i="0" data-tags="Editorial Design|Project Documentation" style="order:0">
     <div class="head">
       <h2><a href="#formgiving-book">Formgiving Book</a></h2>
-      <ul class="tags"><li>Editorial Design</li><li>Project Documentation</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="Project Documentation">Project Documentation</button></li></ul>
     </div>
     <div class="body">
       <p>Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.</p>
@@ -173,10 +193,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="mitgera-11" style="order:2">
+  <article class="project" id="mitgera-11" data-i="2" data-tags="Visual Identity|Editorial Design|Print Design" style="order:2">
     <div class="head">
       <h2><a href="#mitgera-11">Mitgera 11</a></h2>
-      <ul class="tags"><li>Visual Identity</li><li>Editorial Design</li><li>Print Design</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Visual Identity">Visual Identity</button></li><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="Print Design">Print Design</button></li></ul>
     </div>
     <div class="body">
       <p>Identity and sales dossier for Mitgera 11, a twenty-two-home development in Tarragona’s Part Baixa. The name, Catalan for party wall, sets the tone for the wordmark and for a boxed ring binder covering the location, the building, the apartment types and the specifications.</p>
@@ -188,10 +208,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="park-residences" style="order:4">
+  <article class="project" id="park-residences" data-i="4" data-tags="Editorial Design|Print Design|Project Documentation" style="order:4">
     <div class="head">
       <h2><a href="#park-residences">Park Residences</a></h2>
-      <ul class="tags"><li>Editorial Design</li><li>Print Design</li><li>Project Documentation</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="Print Design">Print Design</button></li><li><button class="tag" type="button" data-tag="Project Documentation">Project Documentation</button></li></ul>
     </div>
     <div class="body">
       <p>Sales dossier for two timber buildings by Proforma Studio in an apricot orchard in Goght, Armenia. The architects’ drawings are redrawn as one set, from the site to each apartment.</p>
@@ -203,10 +223,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="formgiving-exhibition" style="order:6">
+  <article class="project" id="formgiving-exhibition" data-i="6" data-tags="Visual Identity|Print Design|Exhibition Design|Project Documentation" style="order:6">
     <div class="head">
       <h2><a href="#formgiving-exhibition">Formgiving Exhibition</a></h2>
-      <ul class="tags"><li>Visual Identity</li><li>Print Design</li><li>Exhibition Design</li><li>Project Documentation</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Visual Identity">Visual Identity</button></li><li><button class="tag" type="button" data-tag="Print Design">Print Design</button></li><li><button class="tag" type="button" data-tag="Exhibition Design">Exhibition Design</button></li><li><button class="tag" type="button" data-tag="Project Documentation">Project Documentation</button></li></ul>
     </div>
     <div class="body">
       <p>Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.</p>
@@ -218,10 +238,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="pallet-tyre-iroko" style="order:8">
+  <article class="project" id="pallet-tyre-iroko" data-i="8" data-tags="Editorial Design|Print Design|Project Documentation" style="order:8">
     <div class="head">
       <h2><a href="#pallet-tyre-iroko">Pallet, Tyre, Iroko</a></h2>
-      <ul class="tags"><li>Editorial Design</li><li>Print Design</li><li>Project Documentation</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="Print Design">Print Design</button></li><li><button class="tag" type="button" data-tag="Project Documentation">Project Documentation</button></li></ul>
     </div>
     <div class="body">
       <p>Publication for a dwelling module in Makeni, Sierra Leone, built from pallets, used tyres and iroko. The construction drawings are redrawn alongside the site, climate and assembly sequence.</p>
@@ -235,10 +255,10 @@ body.locked{overflow:hidden}
   </article>
     </div>
     <div class="col col-right">
-  <article class="project" id="3daysofdesign" style="order:1">
+  <article class="project" id="3daysofdesign" data-i="1" data-tags="Visual Identity|3D Illustration" style="order:1">
     <div class="head">
       <h2><a href="#3daysofdesign">3daysofdesign Graphic Identity</a></h2>
-      <ul class="tags"><li>Visual Identity</li><li>3D Illustration</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Visual Identity">Visual Identity</button></li><li><button class="tag" type="button" data-tag="3D Illustration">3D Illustration</button></li></ul>
     </div>
     <div class="body">
       <p>Graphic identity for 3daysofdesign 2024, developed at BIG around the theme “Dare to Dream”. The project explored the possibilities of design through an optimistic visual language centred on imagination, inspiration, and the belief that anything is possible.</p>
@@ -250,10 +270,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="bhq-signage" style="order:3">
+  <article class="project" id="bhq-signage" data-i="3" data-tags="Signage &amp; Wayfinding|Icon Design" style="order:3">
     <div class="head">
       <h2><a href="#bhq-signage">BHQ Signage &amp; Wayfinding</a></h2>
-      <ul class="tags"><li>Signage &amp; Wayfinding</li><li>Icon Design</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Signage &amp; Wayfinding">Signage &amp; Wayfinding</button></li><li><button class="tag" type="button" data-tag="Icon Design">Icon Design</button></li></ul>
     </div>
     <div class="body">
       <p>An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. One grid, one line weight: every icon belongs to the same family.</p>
@@ -265,10 +285,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="arctic-edge" style="order:5">
+  <article class="project" id="arctic-edge" data-i="5" data-tags="Editorial Design|3D Illustration" style="order:5">
     <div class="head">
       <h2><a href="#arctic-edge">From the Arctic Edge to Ocean Bloom</a></h2>
-      <ul class="tags"><li>Editorial Design</li><li>3D Illustration</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="3D Illustration">3D Illustration</button></li></ul>
     </div>
     <div class="body">
       <p>Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.</p>
@@ -280,10 +300,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="architects-guide" style="order:7">
+  <article class="project" id="architects-guide" data-i="7" data-tags="Editorial Design|3D Illustration" style="order:7">
     <div class="head">
       <h2><a href="#architects-guide">The Architect’s Guide to the Galaxy</a></h2>
-      <ul class="tags"><li>Editorial Design</li><li>3D Illustration</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Editorial Design">Editorial Design</button></li><li><button class="tag" type="button" data-tag="3D Illustration">3D Illustration</button></li></ul>
     </div>
     <div class="body">
       <p>Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.</p>
@@ -295,10 +315,10 @@ body.locked{overflow:hidden}
       <button class="next" type="button" aria-label="Next image"><svg viewBox="0 0 16 16"><path d="M1 8h14M10 3l5 5-5 5"/></svg></button>
       <span class="enlarge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9 1h6v6M15 1 9 7M7 15H1V9M1 15l6-6"/></svg></span>    </div>
   </article>
-  <article class="project" id="munsell-color-system" style="order:9">
+  <article class="project" id="munsell-color-system" data-i="9" data-tags="Infographic Design" style="order:9">
     <div class="head">
       <h2><a href="#munsell-color-system">Munsell Color System</a></h2>
-      <ul class="tags"><li>Infographic Design</li></ul>
+      <ul class="tags"><li><button class="tag" type="button" data-tag="Infographic Design">Infographic Design</button></li></ul>
     </div>
     <div class="body">
       <p>An infographic of the Munsell Color System, developed by Albert H. Munsell in the early 20th century, which classifies colour by hue, value and chroma. Modelled in Rhinoceros 3D and refined in Illustrator and InDesign.</p>
@@ -465,7 +485,7 @@ body.locked{overflow:hidden}
       return Math.ceil(Math.max(hgt(p.querySelector('.head')),
                                 hgt(p.querySelector('.body'))));
     }
-    var L = document.querySelectorAll('.col-left .project'), R = document.querySelectorAll('.col-right .project');
+    var L = document.querySelectorAll('.col-left .project:not([hidden])'), R = document.querySelectorAll('.col-right .project:not([hidden])');
     for (var i = 0; i < L.length; i++) {
       var pair = R[i] ? [L[i], R[i]] : [L[i]];
       var h = Math.max.apply(null, pair.map(closedH));
@@ -476,6 +496,31 @@ body.locked{overflow:hidden}
   window.addEventListener('resize', alignRows);
   window.addEventListener('hashchange', alignRows); // the work view measures 0 while hidden
   if (document.fonts) document.fonts.ready.then(alignRows);
+
+  /* tag filter: clicking a pill leaves only the projects with that tag, re-flowed into the two columns */
+  var colL = document.querySelector('.col-left'), colR = document.querySelector('.col-right');
+  var all = Array.prototype.slice.call(document.querySelectorAll('.project')).sort(function (a, b) { return a.dataset.i - b.dataset.i; });
+  var clearBtn = document.querySelector('.filter-clear');
+  var activeTag = null;
+  function setFilter(tag) {
+    activeTag = tag;
+    var shown = all.filter(function (p) { return !tag || p.dataset.tags.split('|').indexOf(tag) > -1; });
+    all.forEach(function (p) { p.hidden = shown.indexOf(p) < 0; });
+    shown.forEach(function (p, k) { (k % 2 ? colR : colL).appendChild(p); p.style.order = k; });
+    all.forEach(function (p) { if (p.hidden) colL.appendChild(p); });
+    document.querySelectorAll('.tag').forEach(function (b) { b.classList.toggle('active', b.dataset.tag === tag); });
+    clearBtn.hidden = !tag;
+    if (tag) clearBtn.querySelector('span').textContent = tag;
+    alignRows();
+  }
+  document.querySelectorAll('.tag').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setFilter(activeTag === b.dataset.tag ? null : b.dataset.tag);
+      window.scrollTo(0, 0);
+    });
+  });
+  clearBtn.addEventListener('click', function () { setFilter(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !current && activeTag) setFilter(null); });
 
   /* horizontal swipe on touch screens */
   function swipe(el, fn) {

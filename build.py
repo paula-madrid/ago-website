@@ -73,9 +73,9 @@ def project(p, i=0):
                     f'muted loop playsinline preload="metadata"{hid}></video>')
         return f'<img src="img/{p["slug"]}-{n}.jpg" alt="{alt}" loading="lazy" decoding="async"{hid}>'
     slides = "".join(slide(n) for n in range(1, p["images"] + 1))
-    tags = "".join(f"<li>{e(t)}</li>" for t in p["tags"])
+    tags = "".join(f'<li><button class="tag" type="button" data-tag="{e(t)}">{e(t)}</button></li>' for t in p["tags"])
     return f'''
-  <article class="project" id="{p["slug"]}" style="order:{i}">
+  <article class="project" id="{p["slug"]}" data-i="{i}" data-tags="{e("|".join(p["tags"]))}" style="order:{i}">
     <div class="head">
       <h2><a href="#{p["slug"]}">{e(p["title"])}</a></h2>
       <ul class="tags">{tags}</ul>
@@ -97,9 +97,12 @@ JS = (ROOT / "script.js").read_text()
 
 BODY = f'''
 <div id="work-view">
-  <header class="top">
+  <header class="top work-top">
     <a class="mark" href="#">Applied Graphics Office</a>
-    <a class="nav" href="#information">Information</a>
+    <div class="top-r">
+      <button class="filter-clear" type="button" hidden aria-label="Show all projects"><span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
+      <a class="nav" href="#information">Information</a>
+    </div>
   </header>
   <main class="grid">
     <div class="col col-left">{"".join(project(p, i) for i, p in enumerate(PROJECTS) if i % 2 == 0)}

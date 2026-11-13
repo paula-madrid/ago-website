@@ -127,7 +127,7 @@
       return Math.ceil(Math.max(hgt(p.querySelector('.head')),
                                 hgt(p.querySelector('.body'))));
     }
-    var L = document.querySelectorAll('.col-left .project'), R = document.querySelectorAll('.col-right .project');
+    var L = document.querySelectorAll('.col-left .project:not([hidden])'), R = document.querySelectorAll('.col-right .project:not([hidden])');
     for (var i = 0; i < L.length; i++) {
       var pair = R[i] ? [L[i], R[i]] : [L[i]];
       var h = Math.max.apply(null, pair.map(closedH));
@@ -138,6 +138,31 @@
   window.addEventListener('resize', alignRows);
   window.addEventListener('hashchange', alignRows); // the work view measures 0 while hidden
   if (document.fonts) document.fonts.ready.then(alignRows);
+
+  /* tag filter: clicking a pill leaves only the projects with that tag, re-flowed into the two columns */
+  var colL = document.querySelector('.col-left'), colR = document.querySelector('.col-right');
+  var all = Array.prototype.slice.call(document.querySelectorAll('.project')).sort(function (a, b) { return a.dataset.i - b.dataset.i; });
+  var clearBtn = document.querySelector('.filter-clear');
+  var activeTag = null;
+  function setFilter(tag) {
+    activeTag = tag;
+    var shown = all.filter(function (p) { return !tag || p.dataset.tags.split('|').indexOf(tag) > -1; });
+    all.forEach(function (p) { p.hidden = shown.indexOf(p) < 0; });
+    shown.forEach(function (p, k) { (k % 2 ? colR : colL).appendChild(p); p.style.order = k; });
+    all.forEach(function (p) { if (p.hidden) colL.appendChild(p); });
+    document.querySelectorAll('.tag').forEach(function (b) { b.classList.toggle('active', b.dataset.tag === tag); });
+    clearBtn.hidden = !tag;
+    if (tag) clearBtn.querySelector('span').textContent = tag;
+    alignRows();
+  }
+  document.querySelectorAll('.tag').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setFilter(activeTag === b.dataset.tag ? null : b.dataset.tag);
+      window.scrollTo(0, 0);
+    });
+  });
+  clearBtn.addEventListener('click', function () { setFilter(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !current && activeTag) setFilter(null); });
 
   /* horizontal swipe on touch screens */
   function swipe(el, fn) {
