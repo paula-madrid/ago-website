@@ -139,46 +139,64 @@
   window.addEventListener('hashchange', alignRows); // the work view measures 0 while hidden
   if (document.fonts) document.fonts.ready.then(alignRows);
 
-  /* tag filter: clicking a pill leaves only the projects with that tag, re-flowed into the two columns */
+  /* tag filter: pills add up; the grid shows every project that has any of the chosen tags,
+     re-flowed into the two columns. Each chosen tag sits in the header with an × to remove it. */
   var colL = document.querySelector('.col-left'), colR = document.querySelector('.col-right');
   var all = Array.prototype.slice.call(document.querySelectorAll('.project')).sort(function (a, b) { return a.dataset.i - b.dataset.i; });
-  var clearBtn = document.querySelector('.filter-clear');
-  var activeTag = null;
-  function setFilter(tag) {
-    activeTag = tag;
-    var shown = all.filter(function (p) { return !tag || p.dataset.tags.split('|').indexOf(tag) > -1; });
+  var bar = document.querySelector('.filters');
+  var active = [];
+  var allTags = [];
+  all.forEach(function (p) { p.dataset.tags.split('|').forEach(function (t) { if (allTags.indexOf(t) < 0) allTags.push(t); }); });
+  function toggle(t, toTop) { changeFilter(active.indexOf(t) > -1 ? active.filter(function (x) { return x !== t; }) : active.concat(t), toTop); }
+  var X = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg>';
+  function setFilter(tags) {
+    active = tags;
+    var shown = all.filter(function (p) {
+      if (!tags.length) return true;
+      var t = p.dataset.tags.split('|');
+      return tags.some(function (x) { return t.indexOf(x) > -1; });
+    });
     all.forEach(function (p) { p.hidden = shown.indexOf(p) < 0; });
     shown.forEach(function (p, k) { (k % 2 ? colR : colL).appendChild(p); p.style.order = k; });
     all.forEach(function (p) { if (p.hidden) colL.appendChild(p); });
-    document.querySelectorAll('.tag').forEach(function (b) { b.classList.toggle('active', b.dataset.tag === tag); });
-    clearBtn.hidden = !tag;
-    if (tag) clearBtn.querySelector('span').textContent = tag;
+    document.querySelectorAll('.project .tag').forEach(function (b) { b.classList.toggle('active', tags.indexOf(b.dataset.tag) > -1); });
+    /* once filtering, the header lists every tag: chosen ones dark with an ×, the rest grey to add */
+    bar.innerHTML = '';
+    if (tags.length) allTags.forEach(function (t) {
+      var on = tags.indexOf(t) > -1, b = document.createElement('button');
+      b.type = 'button'; b.className = on ? 'filter-clear' : 'tag'; b.dataset.tag = t;
+      b.setAttribute('aria-label', (on ? 'Remove filter ' : 'Add filter ') + t);
+      b.innerHTML = '<span></span>' + (on ? X : ''); b.firstChild.textContent = t;
+      b.addEventListener('click', function () { toggle(t, false); });
+      bar.appendChild(b);
+    });
     alignRows();
   }
   /* fade the grid out, re-flow, then bring the projects back in one after another */
   var grid = document.querySelector('.grid'), busy = false;
-  function changeFilter(tag, toTop) {
+  function changeFilter(tags, toTop) {
     if (busy) return;
-    if (reduce.matches || !grid.animate) { setFilter(tag); if (toTop) window.scrollTo(0, 0); return; }
+    var before = active.slice();
+    if (reduce.matches || !grid.animate) { setFilter(tags); if (toTop) window.scrollTo(0, 0); return; }
     busy = true;
     grid.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease-out', fill: 'forwards' }).onfinish = function () {
-      setFilter(tag);
+      setFilter(tags);
       if (toTop) window.scrollTo(0, 0);
       grid.getAnimations().forEach(function (a) { a.cancel(); });
-      var shown = all.filter(function (p) { return !p.hidden; });
-      shown.forEach(function (p, k) {
+      all.filter(function (p) { return !p.hidden; }).forEach(function (p, k) {
         p.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
                   { duration: 380, delay: Math.min(k, 8) * 45, easing: 'cubic-bezier(.25,.8,.25,1)', fill: 'backwards' });
       });
-      if (tag) clearBtn.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, easing: 'ease-out' });
+      bar.querySelectorAll('.filter-clear').forEach(function (b) {
+        if (before.indexOf(b.dataset.tag) < 0) b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, easing: 'ease-out' });
+      });
       busy = false;
     };
   }
-  document.querySelectorAll('.tag').forEach(function (b) {
-    b.addEventListener('click', function () { changeFilter(activeTag === b.dataset.tag ? null : b.dataset.tag, true); });
+  document.querySelectorAll('.project .tag').forEach(function (b) {
+    b.addEventListener('click', function () { toggle(b.dataset.tag, true); });
   });
-  clearBtn.addEventListener('click', function () { changeFilter(null, false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !current && activeTag) changeFilter(null, false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !current && active.length) changeFilter([], false); });
 
   /* horizontal swipe on touch screens */
   function swipe(el, fn) {

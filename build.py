@@ -102,7 +102,7 @@ BODY = f'''
     <div class="top-r">
       <a class="nav" href="#information">Information</a>
     </div>
-    <button class="filter-clear" type="button" hidden aria-label="Show all projects"><span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
+    <div class="filters" aria-live="polite"></div>
   </header>
   <main class="grid">
     <div class="col col-left">{"".join(project(p, i) for i, p in enumerate(PROJECTS) if i % 2 == 0)}
