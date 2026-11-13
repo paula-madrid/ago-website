@@ -1,6 +1,7 @@
 /* 8-column grid, 4 per half; rules mark rows and the centre line. Light only, by design. */
 :root{
-  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --tag-hover:#a9a9a9; --pill:#eeeeec; --link:#3266cf;
+  --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --tag-hover:#a9a9a9;
+  --c-edit:#b9c5e2; --c-edit-strong:#9fb0d8; --c-env:#e2aea1; --c-env-strong:#d99282; --c-id:#f6e781; --c-id-strong:#f0db5c; --pill:#eeeeec; --link:#3266cf;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
   --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
   --m:2.8vw;            /* outer margin */
@@ -32,7 +33,8 @@ p{margin:0}
 .top .mark,.top .nav,.info .mark{border-radius:.3em;padding:.1em .3em;margin:-.1em -.3em;transition:background-color .15s}
 @media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
 /* work header: name over the left column, filter + Information over the right */
-.work-top{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);align-items:baseline}
+.work-top{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;column-gap:var(--g);align-items:baseline;padding-bottom:1.15vw}
+.work-top .filter-clear{grid-column:1;grid-row:2;align-self:end;justify-self:start}
 .work-top .mark{justify-self:start}
 .top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
 .top-r .nav{margin-left:auto}
@@ -53,13 +55,15 @@ h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-t
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
 .tags li{display:flex}
 /* pills filter the grid; the active one turns dark */
-.tag,.filter-clear{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
-  cursor:pointer;transition:background-color .15s}
-@media (hover:hover){.tag:hover{background:var(--tag-hover)}}
-.tag.active,.filter-clear{background:var(--text)}
+.tag,.filter-clear{letter-spacing:0;color:var(--ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
+  cursor:pointer;transition:background-color .15s,color .15s}
+/* each service group has its colour; while filtering, only the chosen tag keeps it */
+.g-edit{background:var(--c-edit)} .g-env{background:var(--c-env)} .g-id{background:var(--c-id)}
+@media (hover:hover){.g-edit:hover{background:var(--c-edit-strong)} .g-env:hover{background:var(--c-env-strong)} .g-id:hover{background:var(--c-id-strong)}}
+.grid.filtering .tag:not(.active){background:var(--tag);color:var(--tag-ink)}
+@media (hover:hover){.grid.filtering .tag:not(.active):hover{background:var(--tag-hover)}}
 .filter-clear{display:inline-flex;align-items:center;gap:.45em;font-size:calc(var(--s-body)*.86)}
 .filter-clear svg{width:.75em;height:.75em;stroke-width:2}
-@media (hover:hover){.filter-clear:hover{background:var(--ink)}}
 .meta a,.info a:not(.mark){white-space:nowrap}
 /* ↗ after links that leave the site. Drawn as an icon because Inclusive Sans has no arrow glyph,
    and a fallback font would differ between systems */
@@ -124,7 +128,8 @@ body.locked{overflow:hidden}
   .work-top{grid-template-columns:auto 1fr;row-gap:12px}
   .top-r{display:contents}
   .top-r .nav{justify-self:end;grid-column:2;grid-row:1}
-  .filter-clear{grid-column:1/-1;grid-row:2;justify-self:start}
+  .work-top .filter-clear{grid-column:1/-1}
+  .work-top{padding-bottom:14px}
   .grid{display:flex;flex-direction:column}
   .col{display:contents}
   .project,.col-right .project{grid-template-columns:1fr;grid-row:auto;grid-template-rows:none;row-gap:14px;padding:14px max(16px, env(safe-area-inset-right,0px)) 20px max(16px, env(safe-area-inset-left,0px));border-left:0}
