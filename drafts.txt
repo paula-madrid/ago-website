@@ -1,9 +1,0 @@
-# Hidden from the site for now; paste back into PROJECTS in build.py to restore.
-# Their images stay in img/ (park-residences-1..8.jpg, pallet-tyre-iroko-1.jpg).
-
-    dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design"],
-         text="Sales dossier for Park Residences, two timber residential buildings by Proforma Studio set in an apricot orchard in Goght, near Garni, Armenia. The dossier moves from the orchard concept through the site and building to each apartment type, with the architects’ drawings redrawn as one consistent set.",
-         year="2026", credit=("Context", "Proforma Studio"), images=8),
-    dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design", "Project Documentation"],
-         text="Publication for a dwelling module in Makeni, Sierra Leone, built from freight pallets, used tyres and iroko. The original construction drawings are redrawn and set alongside the site, the climate and the assembly sequence.",
-         year="2016", credit=("Context", "Master’s thesis, San Pablo CEU"), images=1),

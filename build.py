@@ -32,6 +32,13 @@ PROJECTS = [
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
+    dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design"],
+         text="Sales dossier for Park Residences, two timber residential buildings by Proforma Studio set in an apricot orchard in Goght, near Garni, Armenia. The dossier moves from the orchard concept through the site and building to each apartment type, with the architects’ drawings redrawn as one consistent set.",
+         year="2026", credit=("Context", "Proforma Studio"), images=8),
+    dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design", "Project Documentation"],
+         text="Publication for a dwelling module in Makeni, Sierra Leone, built from freight pallets, used tyres and iroko. The original construction drawings are redrawn and set alongside the site, the climate and the assembly sequence.",
+         year="2016", credit=("Context", "Master’s thesis, San Pablo CEU"), images=17,
+         alts=['Open book, close-up of detail D10: the tyre footing, steel core and drainage, with red leader lines', 'The closed book at an angle, kraft cover with a photograph glued on and white type', 'Cover open on the opening page: the finished module drawn above a short paragraph', 'Close-up of the opening page: the module drawing and the text about building from parts already in circulation', 'Spread 5–6: the Context divider and the brief, with climate charts and figures', 'Spread 7–8: Makeni, Sierra Leone, text and three photographs', 'Spread 9–10: full-bleed photograph of market stalls built from round timber poles and metal sheet', 'Spread 13–14: aggregation and growth, the six principles, the roof plan and a field photograph', 'Spread 15–16: pallet, tyre and iroko, each with a photograph, data and a joint drawing', 'Close-up of the D1 tyre footing and D4 truss joint, with the red sewing thread in the gutter', 'Spread 17–18: the assembly sequence in eleven axonometric steps', 'Spread 19–20: sections A-A and B-B', 'Close-up of section B-B: two roofs meeting over the shared gutter, details D9 and D10 marked in red', 'Spread 21–22: quantities per module and the module plan', 'Spread 23–24: details D9 and D10, and water and power', 'Spread 25–26: a path through the palms, and the colophon', 'The closed book from above, kraft cover with a photograph glued on and white type']),
 ]
 
 INFO = [
@@ -59,7 +66,7 @@ def press(p):
 
 def project(p, i=0):
     def slide(n):
-        alt = f'{e(p["title"])}, image {n} of {p["images"]}'
+        alt = e(p["alts"][n - 1]) if p.get("alts") else f'{e(p["title"])}, image {n} of {p["images"]}'
         hid = "" if n == 1 else " hidden"
         if n in p.get("videos", ()):  # muted looping video; the .jpg of the same name is its first frame
             return (f'<video src="img/{p["slug"]}-{n}.mp4" poster="img/{p["slug"]}-{n}.jpg" aria-label="{alt}" '
