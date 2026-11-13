@@ -34,7 +34,7 @@ p{margin:0}
 @media (hover:hover){.top .mark:hover,.top .nav:hover,.info .mark:hover{background:var(--pill)}}
 /* work header: name over the left column, filter + Information over the right */
 .work-top{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;column-gap:var(--g);align-items:baseline;padding-bottom:1.15vw}
-.work-top .filters{grid-column:1;grid-row:2;align-self:end;justify-self:start;display:flex;flex-wrap:wrap;gap:4px}
+.work-top .filters{grid-column:1/-1;grid-row:2;align-self:end;justify-self:start;display:flex;flex-wrap:wrap;gap:4px}
 .filters:empty{display:none}
 .work-top .mark{justify-self:start}
 .top-r{display:flex;align-items:baseline;gap:1em;min-width:0}

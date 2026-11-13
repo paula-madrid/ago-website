@@ -160,13 +160,14 @@
     shown.forEach(function (p, k) { (k % 2 ? colR : colL).appendChild(p); p.style.order = k; });
     all.forEach(function (p) { if (p.hidden) colL.appendChild(p); });
     document.querySelectorAll('.project .tag').forEach(function (b) { b.classList.toggle('active', tags.indexOf(b.dataset.tag) > -1); });
-    /* once filtering, the header lists every tag: chosen ones dark with an ×, the rest grey to add */
+    /* the header shows the chosen tags, each with an × to remove it; more are added from the project pills */
     bar.innerHTML = '';
-    if (tags.length) allTags.forEach(function (t) {
-      var on = tags.indexOf(t) > -1, b = document.createElement('button');
-      b.type = 'button'; b.className = on ? 'filter-clear' : 'tag'; b.dataset.tag = t;
-      b.setAttribute('aria-label', (on ? 'Remove filter ' : 'Add filter ') + t);
-      b.innerHTML = '<span></span>' + (on ? X : ''); b.firstChild.textContent = t;
+    allTags.forEach(function (t) {
+      if (tags.indexOf(t) < 0) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'filter-clear'; b.dataset.tag = t;
+      b.setAttribute('aria-label', 'Remove filter ' + t);
+      b.innerHTML = '<span></span>' + X; b.firstChild.textContent = t;
       b.addEventListener('click', function () { toggle(t, false); });
       bar.appendChild(b);
     });
