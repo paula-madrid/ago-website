@@ -8,7 +8,7 @@ import html, pathlib
 ROOT = pathlib.Path(__file__).parent
 
 PROJECTS = [
-    dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design"],
+    dict(slug="formgiving-book", title="Formgiving Book", tags=["Editorial Design", "Project Documentation"],
          text="Catalogue accompanying the Formgiving exhibition at the Danish Architecture Center in Copenhagen. The publication explores BIG’s ideas on how architecture can respond to the challenges shaping our planet.",
          year="2020", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/big-formgiving-an-architectural-future-history-taschen-12-19-2020/'), ('TASCHEN', 'https://www.taschen.com/en/books/architecture-design/04679/big-formgiving-an-architectural-future-history/'), ('art4d', 'https://art4d.com/en/2021/01/big-formgiving')], images=6),
     dict(slug="3daysofdesign", title="3daysofdesign Graphic Identity", tags=["Visual Identity", "3D Illustration"],
@@ -20,13 +20,13 @@ PROJECTS = [
     dict(slug="bhq-signage", title="BHQ Signage & Wayfinding", tags=["Signage & Wayfinding", "Icon Design"],
          text="An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. One grid, one line weight: every icon belongs to the same family.",
          year="2022", credit=("Studio", "BIG"), images=8, videos=[1]),
-    dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design"],
+    dict(slug="park-residences", title="Park Residences", tags=["Editorial Design", "Print Design", "Project Documentation"],
          text="Sales dossier for two timber buildings by Proforma Studio in an apricot orchard in Goght, Armenia. The architects’ drawings are redrawn as one set, from the site to each apartment.",
          year="2026", credit=("Context", "Proforma Studio"), images=8),
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
-    dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
+    dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design", "Project Documentation"],
          text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
          year="2019", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/'), ('DAC', 'https://dac.dk/en/exhibitions/big-presents-formgiving'), ('Scandinavian Design', 'https://scandinaviandesign.com/explore-bigs-world-of-form-and-color-danish-architecture-centre/')], images=7),
     dict(slug="architects-guide", title="The Architect’s Guide to the Galaxy", tags=["Editorial Design", "3D Illustration"],
