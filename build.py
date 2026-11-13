@@ -20,12 +20,6 @@ PROJECTS = [
     dict(slug="bhq-signage", title="BHQ Signage & Wayfinding", tags=["Signage & Wayfinding", "Icon Design"],
          text="An iconography and signage system for BIG’s headquarters in Copenhagen, from the floor directory and door signs to the pictograms on them. One grid, one line weight: every icon belongs to the same family.",
          year="2022", credit=("Studio", "BIG"), images=8, videos=[1]),
-    dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
-         text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
-         year="2019", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/'), ('DAC', 'https://dac.dk/en/exhibitions/big-presents-formgiving'), ('Scandinavian Design', 'https://scandinaviandesign.com/explore-bigs-world-of-form-and-color-danish-architecture-centre/')], images=7),
-    dict(slug="architects-guide", title="The Architect’s Guide to the Galaxy", tags=["Editorial Design", "3D Illustration"],
-         text="Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.",
-         year="2018", credit=("Studio", "BIG"), images=12),
     dict(slug="pallet-tyre-iroko", title="Pallet, Tyre, Iroko", tags=["Editorial Design", "Print Design", "Project Documentation"],
          text="Publication for a dwelling module in Makeni, Sierra Leone, built from pallets, used tyres and iroko. The construction drawings are redrawn alongside the site, climate and assembly sequence.",
          year="2016", credit=("Context", "Master’s thesis, San Pablo CEU"), images=17,
@@ -39,6 +33,12 @@ PROJECTS = [
     dict(slug="arctic-edge", title="From the Arctic Edge to Ocean Bloom", tags=["Editorial Design", "3D Illustration"],
          text="Editorial design and custom 3D illustrations for the scientific publication documenting the Arctic Edge to Ocean Bloom ocean experiment, translating complex research and experimental setups into accessible visual storytelling.",
          year="2022", credit=("Context", "Extiv Expeditions"), images=13),
+    dict(slug="formgiving-exhibition", title="Formgiving Exhibition", tags=["Visual Identity", "Print Design", "Exhibition Design"],
+         text="Graphic design for BIG’s largest exhibition to date at the Danish Architecture Center in Copenhagen, including posters, flyers, and maps. The exhibition explored the evolution of life from the Big Bang to possible futures through a chronological journey.",
+         year="2019", credit=("Studio", "BIG"), press=[('designboom', 'https://www.designboom.com/architecture/bjarke-ingels-group-formgiving-exhibition-copenhagen-06-12-2019/'), ('DAC', 'https://dac.dk/en/exhibitions/big-presents-formgiving'), ('Scandinavian Design', 'https://scandinaviandesign.com/explore-bigs-world-of-form-and-color-danish-architecture-centre/')], images=7),
+    dict(slug="architects-guide", title="The Architect’s Guide to the Galaxy", tags=["Editorial Design", "3D Illustration"],
+         text="Publication developed alongside BIG’s Mars Science City project, exploring the challenges and opportunities of designing architecture on other planets. Rather than a scientific manual, it presents space exploration through an accessible and engaging visual format.",
+         year="2018", credit=("Studio", "BIG"), images=12),
 ]
 
 INFO = [
