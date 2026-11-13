@@ -17,8 +17,7 @@
     var el = h && document.getElementById(h);
     if (el) el.scrollIntoView(); else if (!h) window.scrollTo(0, 0);
   }
-  window.addEventListener('hashchange', route);
-  route();
+  route(); // on load: no transition; later view changes animate (see the end of this file)
 
   /* slideshows */
   function imgs(s) { return s.querySelectorAll('.frame > img, .frame > video'); }
@@ -136,7 +135,6 @@
   }
   alignRows();
   window.addEventListener('resize', alignRows);
-  window.addEventListener('hashchange', alignRows); // the work view measures 0 while hidden
   if (document.fonts) document.fonts.ready.then(alignRows);
 
   /* tag filter: pills add up; the grid shows every project that has any of the chosen tags,
@@ -214,4 +212,30 @@
     }, { passive: true });
     el.addEventListener('click', function (e) { if (el.dataset.swiped) { e.stopPropagation(); e.preventDefault(); } }, true);
   }
+
+  /* switching between Work and Information: the name stays put, everything else fades out,
+     then the other view comes in piece by piece, like the filter */
+  var viewBusy = false;
+  function pieces(v) {
+    if (v === info) return Array.prototype.slice.call(info.querySelectorAll('.info-top > .nav, .info .fade, .info > p:not(:first-child)'));
+    return [work.querySelector('.work-top .nav'), bar].concat(all.filter(function (p) { return !p.hidden; }).slice(0, 9));
+  }
+  function onHash() {
+    var toInfo = location.hash === '#information', from = toInfo ? work : info;
+    if (from.hidden || viewBusy || reduce.matches || !grid.animate) { route(); alignRows(); return; }
+    viewBusy = true;
+    var out = from === work ? [work.querySelector('.work-top .nav'), bar, grid] : pieces(info);
+    var last;
+    out.forEach(function (el) { last = el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease-out', fill: 'forwards' }); });
+    last.onfinish = function () {
+      route(); alignRows();
+      out.forEach(function (el) { el.getAnimations().forEach(function (a) { a.cancel(); }); });
+      pieces(toInfo ? info : work).forEach(function (el, k) {
+        el.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
+                   { duration: 380, delay: Math.min(k, 8) * 45, easing: 'cubic-bezier(.25,.8,.25,1)', fill: 'backwards' });
+      });
+      viewBusy = false;
+    };
+  }
+  window.addEventListener('hashchange', onHash);
 })();

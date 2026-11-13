@@ -114,7 +114,7 @@ BODY = f'''
 <div id="info-view" hidden>
   <div class="top info-top">
   <main class="info">
-    <p><a class="mark" href="#">Applied Graphics Office</a> {e(INFO[0])}</p>
+    <p><a class="mark" href="#">Applied Graphics Office</a> <span class="fade">{e(INFO[0])}</span></p>
     {"".join(f"<p>{e(t)}</p>" for t in INFO[1:])}
     <p class="contact">Email: <a href="mailto:{EMAIL}">{EMAIL}</a><br>Instagram: <a href="https://www.instagram.com/{INSTAGRAM}/" target="_blank" rel="noopener">@{INSTAGRAM}</a></p>
   </main>
