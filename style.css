@@ -38,8 +38,8 @@ p{margin:0}
 .work-top .filters{grid-column:1/-1;grid-row:2;align-self:end;justify-self:start;display:flex;flex-wrap:wrap;gap:4px}
 .filters:empty{display:none}
 .work-top .mark{justify-self:start}
-/* wordmark: Britti Sans outlines, same width as the old type name. Cap height about .78em; the negative margin puts its baseline on the text baseline */
-.wordmark{display:inline-block;vertical-align:baseline;height:1em;width:10.96em;margin-bottom:-.218em;fill:currentColor;stroke:none}
+/* wordmark: Britti Sans outlines, same width as the old type name. The viewBox has 10 units of room each side (negative side margins cancel it) so no browser clips the A or the e. Cap height about .78em; the negative margin puts its baseline on the text baseline */
+.wordmark{display:inline-block;vertical-align:baseline;height:1em;width:11.051em;margin:0 -.0435em -.218em;overflow:visible;fill:currentColor;stroke:none}
 .top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
 .top-r .nav{margin-left:auto}
 /* Information / Work: smaller and grey, so the wordmark is the only thing in the header at its size and colour */
