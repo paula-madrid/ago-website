@@ -3,7 +3,8 @@
   --bg:#f8f8f7; --ink:#161616; --text:#5e5e5b; --meta:#8f8f8b; --rule:#cbcbc7; --tag-hover:#a9a9a9;
   --pill:#eeeeec; --link:#3266cf;
   --tag:#c2c2c2; --tag-ink:#fbfbfa; --on-img:#ffffff;
-  --font:"Inclusive Sans", "Helvetica Neue", Arial, sans-serif;
+  --font:"Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, Menlo, Consolas, monospace;
   --m:2.8vw;            /* outer margin */
   --g:1.6vw;            /* gutter */
   --s-body:clamp(13px, .86vw, 17px);
@@ -37,6 +38,8 @@ p{margin:0}
 .work-top .filters{grid-column:1/-1;grid-row:2;align-self:end;justify-self:start;display:flex;flex-wrap:wrap;gap:4px}
 .filters:empty{display:none}
 .work-top .mark{justify-self:start}
+/* wordmark: Britti Sans outlines, same width as the old type name. Cap height about .78em; the negative margin puts its baseline on the text baseline */
+.wordmark{display:inline-block;vertical-align:baseline;height:1em;width:10.96em;margin-bottom:-.218em;fill:currentColor;stroke:none}
 .top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
 .top-r .nav{margin-left:auto}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
@@ -56,23 +59,23 @@ h2{margin:0;font-size:var(--s-body);font-weight:400;line-height:var(--lh);text-t
 .tags{list-style:none;margin:.45em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
 .tags li{display:flex}
 /* pills filter the grid; the active one turns dark */
-.tag,.filter-clear{letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.86em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
+.tag,.filter-clear{font-family:var(--mono);letter-spacing:0;background:var(--tag);color:var(--tag-ink);font-size:.78em;line-height:1;padding:.36em .5em .32em;border-radius:2px;
   cursor:pointer;transition:background-color .15s}
 @media (hover:hover){.tag:hover{background:var(--tag-hover)}}
 .tag.active,.filter-clear{background:#8f8f8f}
 .filter-clear{display:inline-flex;align-items:center;gap:.45em}
-.filters .tag,.filters .filter-clear{font-size:calc(var(--s-body)*.86)}
+.filters .tag,.filters .filter-clear{font-size:calc(var(--s-body)*.78)}
 .filter-clear svg{width:.75em;height:.75em;stroke-width:2}
 @media (hover:hover){.filter-clear:hover{background:var(--text)}}
 .meta a,.info a:not(.mark){white-space:nowrap}
-/* ↗ after links that leave the site. Drawn as an icon because Inclusive Sans has no arrow glyph,
+/* ↗ after links that leave the site. Drawn as an icon so it matches across fonts,
    and a fallback font would differ between systems */
 a[target="_blank"]::after,a[href^="mailto:"]::after{content:"";display:inline-block;width:.7em;height:.7em;margin-left:.2em;vertical-align:0;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 13 13 3M5 3h8v8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 13 13 3M5 3h8v8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
 .meta a{color:var(--link);border-bottom:1px solid transparent}
 .meta a:hover{color:var(--link);border-bottom-color:currentColor}
-.meta{color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
+.meta{font-family:var(--mono);font-size:.92em;letter-spacing:0;color:var(--meta);margin-top:auto} /* year and client sit on the image; the gap above them flexes */
 
 
 /* slideshow */
@@ -104,7 +107,7 @@ a[target="_blank"]::after,a[href^="mailto:"]::after{content:"";display:inline-bl
 .info a:not(.mark):hover{color:var(--link);border-bottom-color:currentColor}
 
 /* footer */
-.foot{font-size:var(--s-small);color:var(--meta);padding:1.4vw max(var(--m), env(safe-area-inset-right,0px)) max(1.4vw, env(safe-area-inset-bottom,0px)) max(var(--m), env(safe-area-inset-left,0px))}
+.foot{font-family:var(--mono);letter-spacing:0;font-size:var(--s-small);color:var(--meta);padding:1.4vw max(var(--m), env(safe-area-inset-right,0px)) max(1.4vw, env(safe-area-inset-bottom,0px)) max(var(--m), env(safe-area-inset-left,0px))}
 
 /* lightbox */
 .lightbox{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--ink)}
