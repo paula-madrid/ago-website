@@ -42,6 +42,9 @@ p{margin:0}
 .wordmark{display:inline-block;vertical-align:baseline;height:1em;width:10.96em;margin-bottom:-.218em;fill:currentColor;stroke:none}
 .top-r{display:flex;align-items:baseline;gap:1em;min-width:0}
 .top-r .nav{margin-left:auto}
+/* Information / Work: smaller and grey, so the wordmark is the only thing in the header at its size and colour */
+.top .nav{font-size:var(--s-body);color:var(--text)}
+.top .nav:hover{color:var(--ink)}
 .info-top{min-height:0;padding-bottom:4vw} /* same box as the work header, so the name sits in the same spot */
 
 /* work grid */
