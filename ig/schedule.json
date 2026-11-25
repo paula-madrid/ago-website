@@ -1,0 +1,157 @@
+{
+ "account": "17841419377846983",
+ "note": "Posted weekly by a scheduled task via Windsor. Only entries with approved=true are posted.",
+ "posts": [
+  {
+   "n": 2,
+   "date": "2026-12-01",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/02-card.jpg"
+   ],
+   "caption": "Blue, terracotta, yellow, grey.",
+   "approved": true
+  },
+  {
+   "n": 3,
+   "date": "2026-12-08",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/03-archive-card.jpg"
+   ],
+   "caption": "Billed by the millimetre.",
+   "approved": true
+  },
+  {
+   "n": 4,
+   "date": "2026-12-15",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/04-pencils.jpg"
+   ],
+   "caption": ":)",
+   "approved": true
+  },
+  {
+   "n": 5,
+   "date": "2027-01-05",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/05-swatches.jpg"
+   ],
+   "caption": "Environments, visual identity, editorial, digital.",
+   "approved": true
+  },
+  {
+   "n": 6,
+   "date": "2027-01-12",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/06-letterhead.jpg"
+   ],
+   "caption": "On margins, colours and other quiet things.",
+   "approved": true
+  },
+  {
+   "n": 7,
+   "date": "2027-01-19",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/07-iroko-1_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/07-iroko-1_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/07-iroko-1_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/07-iroko-1_slide4.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/07-iroko-1_slide5.jpg"
+   ],
+   "caption": "Pallet, tyre, iroko. A housing module for Makeni, Sierra Leone. 2016.",
+   "approved": false
+  },
+  {
+   "n": 8,
+   "date": "2027-01-26",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/08-iroko-2_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/08-iroko-2_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/08-iroko-2_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/08-iroko-2_slide4.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/08-iroko-2_slide5.jpg"
+   ],
+   "caption": "Pallets, stitched.",
+   "approved": false
+  },
+  {
+   "n": 9,
+   "date": "2027-02-02",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/09-iroko-3_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/09-iroko-3_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/09-iroko-3_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/09-iroko-3_slide4.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/09-iroko-3_slide5.jpg"
+   ],
+   "caption": "Counted, piece by piece.",
+   "approved": false
+  },
+  {
+   "n": 10,
+   "date": "2027-02-09",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/10-architects-guide-1_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/10-architects-guide-1_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/10-architects-guide-1_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/10-architects-guide-1_slide4.jpg"
+   ],
+   "caption": "The Architect's Guide to the Galaxy, at BIG. 2018.",
+   "approved": false
+  },
+  {
+   "n": 11,
+   "date": "2027-02-16",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/11-architects-guide-2_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/11-architects-guide-2_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/11-architects-guide-2_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/11-architects-guide-2_slide4.jpg"
+   ],
+   "caption": "Igloo, yurt, nipa hut. Building for the climate at hand.",
+   "approved": false
+  },
+  {
+   "n": 12,
+   "date": "2027-02-23",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/12-architects-guide-3_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/12-architects-guide-3_slide2.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/12-architects-guide-3_slide3.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/12-architects-guide-3_slide4.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/12-architects-guide-3_slide5.jpg"
+   ],
+   "caption": "Earth, the moon, Mars, and further out.",
+   "approved": false
+  },
+  {
+   "n": 13,
+   "date": "2027-03-02",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/13-formgiving-exhibition-1_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/13-formgiving-exhibition-1_slide2.jpg"
+   ],
+   "caption": "Formgiving exhibition, at BIG. Copenhagen, 2019.",
+   "approved": false
+  },
+  {
+   "n": 14,
+   "date": "2027-03-09",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/14-formgiving-exhibition-2_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/14-formgiving-exhibition-2_slide2.jpg"
+   ],
+   "caption": "Pool, show, lift, host, respond, adapt.",
+   "approved": false
+  },
+  {
+   "n": 15,
+   "date": "2027-03-16",
+   "images": [
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/15-formgiving-exhibition-3_slide1.jpg",
+    "https://raw.githubusercontent.com/paula-madrid/ago-website/instagram/ig/15-formgiving-exhibition-3_slide2.jpg"
+   ],
+   "caption": "Handouts for a room full of models.",
+   "approved": false
+  }
+ ]
+}
